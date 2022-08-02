@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, FlatList } from 'react-native';
+
 import { StackNavigationProp } from '@react-navigation/stack';
 
-import colors from '../constants/colors';
 import { ListItem, ListSeparator } from '../components/List';
-import { MainStackParams } from '../navigation/Main';
+import colors from '../constants/colors';
+import { NavigatorParams } from '../navigation';
 
 const styles = StyleSheet.create({
   container: {
@@ -33,7 +34,7 @@ const screens = [
 ];
 
 type Props = {
-  navigation: StackNavigationProp<MainStackParams, 'List'>;
+  navigation: StackNavigationProp<NavigatorParams, 'List'>;
 };
 
 export const List = ({ navigation }: Props) => {
