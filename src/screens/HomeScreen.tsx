@@ -1,20 +1,22 @@
 import React from 'react';
-import { Card, Title, Paragraph } from 'react-native-paper';
 
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useTranslation } from 'react-i18next';
+import { Card, Title, Paragraph } from 'react-native-paper';
 
-import { NavigatorParams } from '../navigation';
+import { NavigatorParams } from '#app/features/core/navigation';
 
 type Props = {
   navigation: StackNavigationProp<NavigatorParams, 'Home'>;
 };
 
 export const HomeScreen = ({ navigation }: Props) => {
+  const { t } = useTranslation();
   return (
     <>
       <Card onPress={() => navigation?.push('List')}>
         <Card.Content>
-          <Title>Home</Title>
+          <Title>{t('common.hello')}</Title>
           <Paragraph>Home Screen</Paragraph>
         </Card.Content>
       </Card>

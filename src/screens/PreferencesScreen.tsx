@@ -1,9 +1,9 @@
 import React from 'react';
-import { Card, Title, Paragraph } from 'react-native-paper';
 
 import { StackNavigationProp } from '@react-navigation/stack';
+import { Card, Title, Paragraph } from 'react-native-paper';
 
-import { NavigatorParams } from '../navigation';
+import { NavigatorParams } from '#app/features/core/navigation';
 
 type Props = {
   navigation: StackNavigationProp<NavigatorParams, 'Preferences'>;

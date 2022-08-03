@@ -1,5 +1,4 @@
 import React from 'react';
-import { Provider as PaperProvider } from 'react-native-paper';
 
 import {
   NavigationContainer,
@@ -8,13 +7,17 @@ import {
 } from '@react-navigation/native';
 import merge from 'deepmerge';
 import { StatusBar } from 'expo-status-bar';
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import { Provider as PaperProvider } from 'react-native-paper';
 
-import { PreferencesContext } from './contexts/PreferencesContext';
-import { RootNavigator } from './navigation/RootNavigator';
+import { i18nConfig } from '#app/features/core/i18n';
+import { RootNavigator } from '#app/features/core/navigation/RootNavigator';
 import {
+  ThemingContext,
   DarkTheme as PaperDarkTheme,
   DefaultTheme as PaperDefaultTheme,
-} from './theming/themes/default';
+} from '#app/features/core/theming';
 
 const CombinedDefaultTheme = merge(PaperDefaultTheme, NavigationDefaultTheme);
 const CombinedDarkTheme = merge(PaperDarkTheme, NavigationDarkTheme);
@@ -36,14 +39,18 @@ export default function App() {
     [toggleTheme, isThemeDark],
   );
 
+  i18n
+    .use(initReactI18next) // passes i18n down to react-i18next
+    .init(i18nConfig);
+
   return (
-    <PreferencesContext.Provider value={preferences}>
+    <ThemingContext.Provider value={preferences}>
       <PaperProvider theme={theme}>
         <StatusBar style="auto" />
         <NavigationContainer theme={theme}>
           <RootNavigator />
         </NavigationContainer>
       </PaperProvider>
-    </PreferencesContext.Provider>
+    </ThemingContext.Provider>
   );
 }

@@ -1,0 +1,12 @@
+{
+  "common": {
+    "hello": "Hola"
+  },
+  "screens": {
+    "home": "inicio",
+    "bookmarks": "marcadores",
+    "profile": "perfil",
+    "list": "lista",
+    "preferences": "preferencias"
+  }
+}

@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, FlatList } from 'react-native';
 
 import { StackNavigationProp } from '@react-navigation/stack';
+import { StyleSheet, FlatList } from 'react-native';
 
-import { ListItem, ListSeparator } from '../components/List';
-import colors from '../constants/colors';
-import { NavigatorParams } from '../navigation';
+import { ListItem, ListSeparator } from '#app/components/List';
+import colors from '#app/constants/colors';
+import { NavigatorParams } from '#app/features/core/navigation';
 
 const styles = StyleSheet.create({
   container: {

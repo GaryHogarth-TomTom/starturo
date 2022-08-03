@@ -1,11 +1,12 @@
 import React from 'react';
+
 import { useTheme, Appbar, TouchableRipple, Switch } from 'react-native-paper';
 
-import { PreferencesContext } from '../../contexts/PreferencesContext';
+import { ThemingContext } from '#app/features/core/theming';
 
 export const AppHeader = ({ scene }) => {
   const theme = useTheme();
-  const { toggleTheme, isThemeDark } = React.useContext(PreferencesContext);
+  const { toggleTheme, isThemeDark } = React.useContext(ThemingContext);
 
   return (
     <Appbar.Header

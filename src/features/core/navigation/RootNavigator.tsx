@@ -5,7 +5,8 @@ import {
   DrawerContentComponentProps,
 } from '@react-navigation/drawer';
 
-import { List } from '../screens/List';
+import { List } from '#app/screens/List';
+
 import { MainTabsNavigator } from './MainTabsNavigator';
 import { DrawerContent } from './components/DrawerContent';
 

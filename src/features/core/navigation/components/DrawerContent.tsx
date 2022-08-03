@@ -1,4 +1,9 @@
 import React from 'react';
+
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer';
+import { DrawerContentComponentProps } from '@react-navigation/drawer/lib/typescript/src/types';
+import { useTranslation } from 'react-i18next';
 import { View, StyleSheet } from 'react-native';
 import {
   Avatar,
@@ -9,14 +14,11 @@ import {
   Switch,
 } from 'react-native-paper';
 
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer';
-import { DrawerContentComponentProps } from '@react-navigation/drawer/lib/typescript/src/types';
-
-import { PreferencesContext } from '../../contexts/PreferencesContext';
+import { ThemingContext } from '#app/features/core/theming';
 
 export const DrawerContent = (props: DrawerContentComponentProps) => {
-  const { toggleTheme, isThemeDark } = React.useContext(PreferencesContext);
+  const { toggleTheme, isThemeDark } = React.useContext(ThemingContext);
+  const { t } = useTranslation();
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.drawerContent}>
@@ -39,14 +41,14 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
                 size={size}
               />
             )}
-            label="Profile"
+            label={t('screens.profile')}
             onPress={() => props.navigation.navigate('Profile')}
           />
           <DrawerItem
             icon={({ color, size }) => (
               <MaterialCommunityIcons name="tune" color={color} size={size} />
             )}
-            label="Preferences"
+            label={t('screens.preferences')}
             onPress={() => props.navigation.navigate('Preferences')}
           />
           <DrawerItem
@@ -57,7 +59,7 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
                 size={size}
               />
             )}
-            label="Bookmarks"
+            label={t('screens.bookmarks')}
             onPress={() => props.navigation.navigate('Bookmarks')}
           />
           <DrawerItem
@@ -68,7 +70,7 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
                 size={size}
               />
             )}
-            label="List"
+            label={t('screens.list')}
             onPress={() => props.navigation.navigate('List')}
           />
         </Drawer.Section>
