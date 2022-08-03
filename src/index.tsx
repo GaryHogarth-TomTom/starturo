@@ -1,6 +1,5 @@
 import React from 'react';
-import { Alert } from 'react-native';
-import { Provider as PaperProvider, Text } from 'react-native-paper';
+import { Provider as PaperProvider } from 'react-native-paper';
 
 import {
   NavigationContainer,
