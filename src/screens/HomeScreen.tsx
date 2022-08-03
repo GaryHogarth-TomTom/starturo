@@ -4,7 +4,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { useTranslation } from 'react-i18next';
 import { Card, Title, Paragraph } from 'react-native-paper';
 
-import { NavigatorParams } from '#app/features/core/navigation';
+import { NavigatorParams } from '#app/core/navigation';
 
 type Props = {
   navigation: StackNavigationProp<NavigatorParams, 'Home'>;

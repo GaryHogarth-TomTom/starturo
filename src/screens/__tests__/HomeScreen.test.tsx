@@ -12,6 +12,6 @@ it('renders tappable items', () => {
   // screen for this test to work.
   const out = render(<HomeScreen navigation={{ push, navigate }} />);
 
-  fireEvent.press(out.getByText('Home'));
+  fireEvent.press(out.getByText('common.hello'));
   expect(push).toBeCalledWith('List');
 });

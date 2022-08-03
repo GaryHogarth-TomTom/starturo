@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useTheme, Appbar, TouchableRipple, Switch } from 'react-native-paper';
 
-import { ThemingContext } from '#app/features/core/theming';
+import { ThemingContext } from '#app//theming';
 
 export const AppHeader = ({ scene }) => {
   const theme = useTheme();

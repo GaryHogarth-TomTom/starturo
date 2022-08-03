@@ -11,13 +11,13 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { Provider as PaperProvider } from 'react-native-paper';
 
-import { i18nConfig } from '#app/features/core/i18n';
-import { RootNavigator } from '#app/features/core/navigation/RootNavigator';
+import { i18nConfig } from '#app/core/i18n';
+import { RootNavigator } from '#app/core/navigation/RootNavigator';
 import {
   ThemingContext,
   DarkTheme as PaperDarkTheme,
   DefaultTheme as PaperDefaultTheme,
-} from '#app/features/core/theming';
+} from '#app/core/theming';
 
 const CombinedDefaultTheme = merge(PaperDefaultTheme, NavigationDefaultTheme);
 const CombinedDarkTheme = merge(PaperDarkTheme, NavigationDarkTheme);

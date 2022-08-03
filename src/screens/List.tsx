@@ -5,7 +5,7 @@ import { StyleSheet, FlatList } from 'react-native';
 
 import { ListItem, ListSeparator } from '#app/components/List';
 import colors from '#app/constants/colors';
-import { NavigatorParams } from '#app/features/core/navigation';
+import { NavigatorParams } from '#app/core/navigation';
 
 const styles = StyleSheet.create({
   container: {

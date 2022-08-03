@@ -14,7 +14,7 @@ import {
   Switch,
 } from 'react-native-paper';
 
-import { ThemingContext } from '#app/features/core/theming';
+import { ThemingContext } from '#app/core/theming';
 
 export const DrawerContent = (props: DrawerContentComponentProps) => {
   const { toggleTheme, isThemeDark } = React.useContext(ThemingContext);
