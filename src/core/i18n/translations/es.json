@@ -13,7 +13,17 @@
     "preferences": "Preferencias"
   },
   "theming": {
-    "theme": "Tematización"
+    "themePack": {
+      "label": "Paquete temático",
+      "default": "Estándar",
+      "nature": "Naturaleza"
+    },
+    "themeMode": {
+      "label": "Temática",
+      "system": "Sistema",
+      "dark": "Oscura",
+      "light": "Ligera"
+    }
   },
   "preferences": {
     "main": {

@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
 });
 
 const persistConfig = {
-  key: 'root',
+  key: 'starturo',
   version: 1,
   storage: AsyncStorage,
   whitelist: ['theme', 'i18n'],

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { TransitionPresets } from '@react-navigation/stack';
 import { useTranslation } from 'react-i18next';
 
 import { BookmarksScreen } from '#app/screens/BookmarksScreen';

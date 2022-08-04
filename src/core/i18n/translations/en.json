@@ -13,11 +13,17 @@
     "preferences": "Preferences"
   },
   "theming": {
-    "theme": "Theme"
-  },
-  "theme": {
-    "default": "Default",
-    "nature": "Nature"
+    "themePack": {
+      "label": "Theme Pack",
+      "default": "Default",
+      "nature": "Nature"
+    },
+    "themeMode": {
+      "label": "Theme Mode",
+      "system": "System",
+      "dark": "Dark",
+      "light": "Light"
+    }
   },
   "preferences": {
     "main": {

@@ -4,31 +4,31 @@ import { useTranslation } from 'react-i18next';
 import DropDown from 'react-native-paper-dropdown';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { changeTheme, getTheme } from '../store/themeSlice';
-import { themeLibrary, ThemeConfig } from '../themes';
+import { ALLOWED_THEME_PACKS } from '../config';
+import { setThemePack, getThemePack } from '../store/themeSlice';
 
-export const ThemePicker = () => {
-  const { t } = useTranslation();
+export const ThemePackPicker = () => {
+  const { i18n, t } = useTranslation();
   const themeList = React.useMemo(
     () =>
-      Object.values(themeLibrary)?.map((theme: ThemeConfig) => ({
-        label: t(theme.name),
-        value: theme.slug,
+      ALLOWED_THEME_PACKS.map((theme: string) => ({
+        label: t(`theming.themePack.${theme}`),
+        value: theme,
       })),
-    [],
+    [i18n.language],
   );
-  const themeName = useSelector(getTheme);
+  const themePack = useSelector(getThemePack);
   const dispatch = useDispatch();
   const [showDropDown, setShowDropDown] = React.useState(false);
   return themeList ? (
     <DropDown
-      label={t('theming.theme')}
+      label={t('theming.themePack.label')}
       mode={'outlined'}
       visible={showDropDown}
       showDropDown={() => setShowDropDown(true)}
       onDismiss={() => setShowDropDown(false)}
-      value={themeName}
-      setValue={newValue => dispatch(changeTheme(newValue))}
+      value={themePack}
+      setValue={newValue => dispatch(setThemePack(newValue))}
       list={themeList}
     />
   ) : null;

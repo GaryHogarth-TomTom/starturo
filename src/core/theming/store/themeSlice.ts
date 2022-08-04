@@ -3,37 +3,38 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '#app/core/store';
 
+export type ThemeMode = 'dark' | 'light';
+export type ThemeModeOption = ThemeMode | 'system';
+export type ThemePack = 'default' | 'nature';
 export interface ThemeState {
-  darkMode: boolean;
-  theme: string;
+  themeMode: ThemeModeOption;
+  themePack: ThemePack;
 }
 
 const initialState: ThemeState = {
-  darkMode: false,
-  theme: 'default',
+  themeMode: 'system',
+  themePack: 'default',
 };
 
 export const themeSlice = createSlice({
   name: 'theme',
   initialState,
   reducers: {
-    toggleDarkMode: state => {
-      state.darkMode = !state.darkMode;
+    setThemeMode: (state, action: PayloadAction<ThemeModeOption>) => {
+      state.themeMode = action.payload;
     },
-    setDarkMode: (state, action: PayloadAction<boolean>) => {
-      state.darkMode = action.payload;
-    },
-    changeTheme: (state, action: PayloadAction<string>) => {
-      state.theme = action.payload;
+    setThemePack: (state, action: PayloadAction<ThemePack>) => {
+      state.themePack = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { toggleDarkMode, changeTheme, setDarkMode } = themeSlice.actions;
+export const { setThemeMode, setThemePack } = themeSlice.actions;
 
-export const getTheme = (state: RootState): string => state.theme.theme;
-export const getIsDarkModeEnabled = (state: RootState): boolean =>
-  state.theme.darkMode;
+export const getThemePack = (state: RootState): ThemePack =>
+  state.theme.themePack;
+export const getThemeMode = (state: RootState): ThemeModeOption =>
+  state.theme.themeMode;
 
 export default themeSlice.reducer;

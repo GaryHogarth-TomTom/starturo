@@ -6,8 +6,6 @@ import {
 } from './nature';
 
 export type ThemeConfig = {
-  slug: string;
-  name: string;
   light: Theme;
   dark: Theme;
 };
@@ -17,14 +15,10 @@ export type ThemeLibrary = {
 
 export const themeLibrary: ThemeLibrary = {
   default: {
-    slug: 'default',
-    name: 'theme.default',
     light: LightTheme,
     dark: DarkTheme,
   },
   nature: {
-    slug: 'nature',
-    name: 'theme.nature',
     light: NatureLightTheme,
     dark: NatureDarkTheme,
   },
