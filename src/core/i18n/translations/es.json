@@ -2,11 +2,26 @@
   "common": {
     "hello": "Hola"
   },
+  "i18n": {
+    "language": "Idioma"
+  },
   "screens": {
-    "home": "inicio",
-    "bookmarks": "marcadores",
-    "profile": "perfil",
-    "list": "lista",
-    "preferences": "preferencias"
+    "home": "Inicio",
+    "bookmarks": "Marcadores",
+    "profile": "Perfil",
+    "list": "Lista",
+    "preferences": "Preferencias"
+  },
+  "theming": {
+    "theme": "Tematización"
+  },
+  "preferences": {
+    "main": {
+      "heading": "Preferencias de la aplicación"
+    },
+    "theming": {
+      "heading": "Tematización",
+      "darkMode": "Modo oscuro"
+    }
   }
 }

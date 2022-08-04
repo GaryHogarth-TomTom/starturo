@@ -2,11 +2,31 @@
   "common": {
     "hello": "Hello"
   },
+  "i18n": {
+    "language": "Language"
+  },
   "screens": {
     "home": "Home",
     "bookmarks": "Bookmarks",
     "profile": "Profile",
     "list": "List",
     "preferences": "Preferences"
+  },
+  "theming": {
+    "theme": "Theme"
+  },
+  "theme": {
+    "default": "Default",
+    "nature": "Nature"
+  },
+  "preferences": {
+    "main": {
+      "heading": "App Preferences"
+    },
+    "theming": {
+      "heading": "Theming",
+      "theme": "Theme",
+      "darkMode": "Dark mode"
+    }
   }
 }

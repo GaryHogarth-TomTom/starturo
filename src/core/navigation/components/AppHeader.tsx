@@ -6,7 +6,7 @@ import { ThemingContext } from '#app//theming';
 
 export const AppHeader = ({ scene }) => {
   const theme = useTheme();
-  const { toggleTheme, isThemeDark } = React.useContext(ThemingContext);
+  const { toggleDarkMode, isThemeDark } = React.useContext(ThemingContext);
 
   return (
     <Appbar.Header
@@ -17,7 +17,7 @@ export const AppHeader = ({ scene }) => {
       }}
     >
       <Appbar.Content title={scene.route?.name} />
-      <TouchableRipple onPress={() => toggleTheme()}>
+      <TouchableRipple onPress={() => toggleDarkMode()}>
         <Switch
           style={[{ backgroundColor: theme.colors.accent }]}
           color={'red'}

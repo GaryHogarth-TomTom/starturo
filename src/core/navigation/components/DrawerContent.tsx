@@ -17,7 +17,7 @@ import {
 import { ThemingContext } from '#app/core/theming';
 
 export const DrawerContent = (props: DrawerContentComponentProps) => {
-  const { toggleTheme, isThemeDark } = React.useContext(ThemingContext);
+  const { toggleDarkMode, isThemeDark } = React.useContext(ThemingContext);
   const { t } = useTranslation();
   return (
     <DrawerContentScrollView {...props}>
@@ -78,7 +78,7 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
           <View style={styles.preference}>
             <Text>Dark Theme</Text>
             <View>
-              <Switch value={isThemeDark} onValueChange={toggleTheme} />
+              <Switch value={isThemeDark} onValueChange={toggleDarkMode} />
             </View>
           </View>
         </Drawer.Section>
