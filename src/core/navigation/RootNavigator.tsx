@@ -5,14 +5,14 @@ import {
   DrawerContentComponentProps,
 } from '@react-navigation/drawer';
 
-import { List } from '#app/screens/List';
+import { MapScreen } from '#app/screens/MapScreen';
 
 import { MainTabsNavigator } from './MainTabsNavigator';
 import { DrawerContent } from './components/DrawerContent';
 
 export type RootNavigatorParams = {
   MainTabs: undefined;
-  List: undefined;
+  Map: undefined;
 };
 
 const Stack = createDrawerNavigator<RootNavigatorParams>();
@@ -24,6 +24,6 @@ export const RootNavigator = () => (
     )}
   >
     <Stack.Screen name="MainTabs" component={MainTabsNavigator} />
-    <Stack.Screen name="List" component={List} />
+    <Stack.Screen name="Map" component={MapScreen} />
   </Stack.Navigator>
 );

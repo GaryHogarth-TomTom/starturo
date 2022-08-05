@@ -5,19 +5,9 @@ import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer';
 import { DrawerContentComponentProps } from '@react-navigation/drawer/lib/typescript/src/types';
 import { useTranslation } from 'react-i18next';
 import { View, StyleSheet } from 'react-native';
-import {
-  Avatar,
-  Title,
-  Caption,
-  Drawer,
-  Text,
-  Switch,
-} from 'react-native-paper';
-
-import { ThemingContext } from '#app/core/theming';
+import { Avatar, Title, Caption, Drawer } from 'react-native-paper';
 
 export const DrawerContent = (props: DrawerContentComponentProps) => {
-  const { toggleDarkMode, isThemeDark } = React.useContext(ThemingContext);
   const { t } = useTranslation();
   return (
     <DrawerContentScrollView {...props}>
@@ -65,22 +55,14 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
           <DrawerItem
             icon={({ color, size }) => (
               <MaterialCommunityIcons
-                name="clipboard-list-outline"
+                name="map-outline"
                 color={color}
                 size={size}
               />
             )}
-            label={t('screens.list')}
-            onPress={() => props.navigation.navigate('List')}
+            label={t('screens.map')}
+            onPress={() => props.navigation.navigate('Map')}
           />
-        </Drawer.Section>
-        <Drawer.Section title="Preferences">
-          <View style={styles.preference}>
-            <Text>Dark Theme</Text>
-            <View>
-              <Switch value={isThemeDark} onValueChange={toggleDarkMode} />
-            </View>
-          </View>
         </Drawer.Section>
       </View>
     </DrawerContentScrollView>
