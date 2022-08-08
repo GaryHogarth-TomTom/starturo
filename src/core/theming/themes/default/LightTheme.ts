@@ -1,10 +1,5 @@
-import { DefaultTheme as NavigationDefaultTheme } from '@react-navigation/native';
-import merge from 'deepmerge';
-import { DefaultTheme as PaperDefaultTheme } from 'react-native-paper';
+import * as eva from '@eva-design/eva';
 
-import type { Theme } from '../../types';
-
-export const LightTheme: Theme = merge(
-  merge(PaperDefaultTheme, NavigationDefaultTheme),
-  {},
-);
+export const LightTheme = {
+  ...eva.light,
+};

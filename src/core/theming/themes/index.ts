@@ -1,4 +1,5 @@
-import { Theme } from '../types';
+import { ThemeType } from '@ui-kitten/components';
+
 import { LightTheme, DarkTheme } from './default';
 import {
   LightTheme as NatureLightTheme,
@@ -6,8 +7,8 @@ import {
 } from './nature';
 
 export type ThemeConfig = {
-  light: Theme;
-  dark: Theme;
+  light: ThemeType;
+  dark: ThemeType;
 };
 export type ThemeLibrary = {
   [key: string]: ThemeConfig;

@@ -1,13 +1,18 @@
 import React from 'react';
 
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { TransitionPresets } from '@react-navigation/stack';
+import {
+  createBottomTabNavigator,
+  BottomTabBarProps,
+} from '@react-navigation/bottom-tabs';
+import { Icon } from '@ui-kitten/components';
 import { useTranslation } from 'react-i18next';
 
 import { BookmarksScreen } from '#app/screens/BookmarksScreen';
 import { HomeScreen } from '#app/screens/HomeScreen';
 import { PreferencesScreen } from '#app/screens/PreferencesScreen';
 import { ProfileScreen } from '#app/screens/ProfileScreen';
+
+import { BottomTabBar } from './components/BottomTabBar';
 
 export type MainTabsNavigatorParams = {
   Home: undefined;
@@ -16,17 +21,21 @@ export type MainTabsNavigatorParams = {
   Bookmarks: undefined;
 };
 
-const Tabs = createMaterialBottomTabNavigator<MainTabsNavigatorParams>();
+const Tabs = createBottomTabNavigator<MainTabsNavigatorParams>();
 
 export const MainTabsNavigator = () => {
   const { t } = useTranslation();
   return (
-    <Tabs.Navigator>
+    <Tabs.Navigator
+      initialRouteName="Home"
+      // screenOptions={{ headerShown: false }}
+      tabBar={(props: BottomTabBarProps) => <BottomTabBar {...props} />}
+    >
       <Tabs.Screen
         name="Home"
         options={{
           title: t('screens.home'),
-          tabBarIcon: 'home',
+          tabBarIcon: props => <Icon {...props} name="home-outline" />,
         }}
         component={HomeScreen}
       />
@@ -34,7 +43,7 @@ export const MainTabsNavigator = () => {
         name="Profile"
         options={{
           title: t('screens.profile'),
-          tabBarIcon: 'account-outline',
+          tabBarIcon: props => <Icon {...props} name="person-outline" />,
         }}
         component={ProfileScreen}
       />
@@ -42,7 +51,7 @@ export const MainTabsNavigator = () => {
         name="Bookmarks"
         options={{
           title: t('screens.bookmarks'),
-          tabBarIcon: 'bookmark-outline',
+          tabBarIcon: props => <Icon {...props} name="bookmark-outline" />,
         }}
         component={BookmarksScreen}
       />
@@ -50,7 +59,7 @@ export const MainTabsNavigator = () => {
         name="Preferences"
         options={{
           title: t('screens.preferences'),
-          tabBarIcon: 'tune',
+          tabBarIcon: props => <Icon {...props} name="settings-2-outline" />,
         }}
         component={PreferencesScreen}
       />

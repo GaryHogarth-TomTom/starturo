@@ -19,6 +19,10 @@ const Stack = createDrawerNavigator<RootNavigatorParams>();
 
 export const RootNavigator = () => (
   <Stack.Navigator
+    initialRouteName="MainTabs"
+    // screenOptions={{
+    //   headerShown: false,
+    // }}
     drawerContent={(props: DrawerContentComponentProps) => (
       <DrawerContent {...props} />
     )}

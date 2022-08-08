@@ -4,8 +4,10 @@ import * as Localization from 'expo-localization';
 
 import { RootState } from '#app/core/store';
 
+import { Language } from '../i18n';
+
 export interface I18nState {
-  language: string;
+  language: Language | string;
 }
 
 const initialState: I18nState = {

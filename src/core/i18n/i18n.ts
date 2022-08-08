@@ -20,4 +20,5 @@ export const i18nConfig = {
   },
 };
 
-export const SUPPORTED_LANGUAGES = Object.keys(i18nConfig.resources);
+export const SUPPORTED_LANGUAGES = <const> ['en','es'];
+export type Language = typeof SUPPORTED_LANGUAGES[number];

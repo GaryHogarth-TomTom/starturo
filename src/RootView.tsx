@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { Provider as PaperProvider } from 'react-native-paper';
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider, ThemeType } from '@ui-kitten/components';
 import { useSelector } from 'react-redux';
 
 import { LanguageListener } from '#app/core/i18n/';
-import { RootNavigator } from '#app/core/navigation';
 import { themeLibrary, getThemePack } from '#app/core/theming';
 
+import { NavigationView } from './NavigationView';
 import { useThemeMode } from './core/theming/hooks/useThemeMode';
 
 export const RootView = () => {
@@ -15,17 +15,15 @@ export const RootView = () => {
 
   const themeMode = useThemeMode();
 
-  const theme =
+  const theme: ThemeType =
     themeMode === 'dark'
-      ? themeLibrary?.[themePack].dark
-      : themeLibrary?.[themePack].light;
+      ? themeLibrary[themePack].dark
+      : themeLibrary[themePack].light;
 
   return (
-    <PaperProvider theme={theme}>
-      <NavigationContainer theme={theme}>
-        <LanguageListener />
-        <RootNavigator />
-      </NavigationContainer>
-    </PaperProvider>
+    <ApplicationProvider {...eva} theme={theme}>
+      <LanguageListener />
+      <NavigationView />
+    </ApplicationProvider>
   );
 };

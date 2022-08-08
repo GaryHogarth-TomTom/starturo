@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
+import { IndexPath, Select, SelectItem, Text } from '@ui-kitten/components';
 import { useTranslation } from 'react-i18next';
-import DropDown from 'react-native-paper-dropdown';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { ALLOWED_THEME_PACKS } from '../config';
+import { ALLOWED_THEME_PACKS, ThemePack } from '../config';
 import { setThemePack, getThemePack } from '../store/themeSlice';
 
 export const ThemePackPicker = () => {
   const { i18n, t } = useTranslation();
-  const themeList = React.useMemo(
+  const data = React.useMemo(
     () =>
-      ALLOWED_THEME_PACKS.map((theme: string) => ({
+      ALLOWED_THEME_PACKS.map((theme: ThemePack) => ({
         label: t(`theming.themePack.${theme}`),
         value: theme,
       })),
@@ -19,17 +19,31 @@ export const ThemePackPicker = () => {
   );
   const themePack = useSelector(getThemePack);
   const dispatch = useDispatch();
-  const [showDropDown, setShowDropDown] = React.useState(false);
-  return themeList ? (
-    <DropDown
-      label={t('theming.themePack.label')}
-      mode={'outlined'}
-      visible={showDropDown}
-      showDropDown={() => setShowDropDown(true)}
-      onDismiss={() => setShowDropDown(false)}
-      value={themePack}
-      setValue={newValue => dispatch(setThemePack(newValue))}
-      list={themeList}
-    />
+  const [selectedIndex, setSelectedIndex] = React.useState<IndexPath>(
+    new IndexPath(0),
+  );
+
+  useEffect(() => {
+    setSelectedIndex(
+      new IndexPath(data.findIndex(item => item.value === themePack)),
+    );
+  }, [data, themePack]);
+
+  return data ? (
+    <>
+      <Text category="label">{t('i18n.language')}</Text>
+      <Select
+        value={data[selectedIndex.row]?.label}
+        onSelect={index => {
+          if (!Array.isArray(index)) {
+            dispatch(setThemePack(data[index.row]?.value));
+          }
+        }}
+      >
+        {data.map((item, i) => (
+          <SelectItem key={item.value} title={item.label} />
+        ))}
+      </Select>
+    </>
   ) : null;
 };

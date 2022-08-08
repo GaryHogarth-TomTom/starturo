@@ -1,110 +1,78 @@
 import React from 'react';
 
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer';
-import { DrawerContentComponentProps } from '@react-navigation/drawer/lib/typescript/src/types';
-import { useTranslation } from 'react-i18next';
-import { View, StyleSheet } from 'react-native';
-import { Avatar, Title, Caption, Drawer } from 'react-native-paper';
+import { DrawerContentComponentProps } from '@react-navigation/drawer';
+import {
+  getFocusedRouteNameFromRoute,
+  NavigationState,
+  useRoute,
+} from '@react-navigation/native';
+import {
+  Drawer,
+  DrawerItem,
+  IndexPath,
+  Text,
+  Icon,
+  DrawerGroup,
+} from '@ui-kitten/components';
+import { SafeAreaView } from 'react-native';
 
-export const DrawerContent = (props: DrawerContentComponentProps) => {
-  const { t } = useTranslation();
+const BellIcon = props => <Icon {...props} name="bell-outline" />;
+const SmartphoneIcon = props => <Icon {...props} name="smartphone-outline" />;
+
+const BrowserIcon = props => <Icon {...props} name="browser-outline" />;
+
+const ColorPaletteIcon = props => (
+  <Icon {...props} name="color-palette-outline" />
+);
+
+const StarIcon = props => <Icon {...props} name="star" />;
+
+export const DrawerContent = ({
+  navigation,
+  state,
+}: DrawerContentComponentProps) => {
+  console.log(state);
+  console.log(
+    getFocusedRouteNameFromRoute(
+      state.routes[state.index] ?? state.routes[state.index],
+    ),
+  );
   return (
-    <DrawerContentScrollView {...props}>
-      <View style={styles.drawerContent}>
-        <View style={styles.userInfoSection}>
-          <Avatar.Image
-            source={{
-              uri: 'https://www.gravatar.com/avatar/b25a6fc8061e9b5b208435df2de4c062',
-            }}
-            size={50}
-          />
-          <Title style={styles.title}>Gary Hogarth</Title>
-          <Caption style={styles.caption}>@garyhogarth</Caption>
-        </View>
-        <Drawer.Section style={styles.drawerSection}>
+    <SafeAreaView>
+      <Drawer>
+        <DrawerGroup
+          title="test"
+          accessoryLeft={SmartphoneIcon}
+          onPress={() => {}}
+          selected={state.routeName == 'Profile'}
+        >
           <DrawerItem
-            icon={({ color, size }) => (
-              <MaterialCommunityIcons
-                name="account-outline"
-                color={color}
-                size={size}
-              />
-            )}
-            label={t('screens.profile')}
-            onPress={() => props.navigation.navigate('Profile')}
+            onPress={() => navigation.navigate('Profile')}
+            title="UI Kitten"
+            accessoryLeft={StarIcon}
+            selected={state.routeName == 'Profile'}
           />
           <DrawerItem
-            icon={({ color, size }) => (
-              <MaterialCommunityIcons name="tune" color={color} size={size} />
-            )}
-            label={t('screens.preferences')}
-            onPress={() => props.navigation.navigate('Preferences')}
+            onPress={() => {}}
+            title="Kitten Tricks"
+            accessoryLeft={StarIcon}
           />
           <DrawerItem
-            icon={({ color, size }) => (
-              <MaterialCommunityIcons
-                name="bookmark-outline"
-                color={color}
-                size={size}
-              />
-            )}
-            label={t('screens.bookmarks')}
-            onPress={() => props.navigation.navigate('Bookmarks')}
+            title="Tab App"
+            onPress={() => navigation.navigate('MainTabs')}
+            accessoryLeft={props => <Icon {...props} name="home-outline" />}
           />
-          <DrawerItem
-            icon={({ color, size }) => (
-              <MaterialCommunityIcons
-                name="map-outline"
-                color={color}
-                size={size}
-              />
-            )}
-            label={t('screens.map')}
-            onPress={() => props.navigation.navigate('Map')}
-          />
-        </Drawer.Section>
-      </View>
-    </DrawerContentScrollView>
+        </DrawerGroup>
+        <DrawerItem
+          title="Map App"
+          onPress={() => navigation.navigate('Map')}
+          accessoryLeft={props => <Icon {...props} name="map-outline" />}
+        />
+        <DrawerItem
+          onPress={() => {}}
+          title={evaProps => <Text {...evaProps}>USERS</Text>}
+        ></DrawerItem>
+      </Drawer>
+    </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  drawerContent: {
-    flex: 1,
-  },
-  userInfoSection: {
-    paddingLeft: 20,
-  },
-  title: {
-    marginTop: 20,
-    fontWeight: 'bold',
-  },
-  caption: {
-    fontSize: 14,
-    lineHeight: 14,
-  },
-  row: {
-    marginTop: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  section: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginRight: 15,
-  },
-  paragraph: {
-    fontWeight: 'bold',
-    marginRight: 3,
-  },
-  drawerSection: {
-    marginTop: 15,
-  },
-  preference: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-  },
-});

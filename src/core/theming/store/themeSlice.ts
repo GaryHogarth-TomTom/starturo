@@ -3,9 +3,8 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 import { RootState } from '#app/core/store';
 
-export type ThemeMode = 'dark' | 'light';
-export type ThemeModeOption = ThemeMode | 'system';
-export type ThemePack = 'default' | 'nature';
+import { ThemeModeOption, ThemePack } from '../config';
+
 export interface ThemeState {
   themeMode: ThemeModeOption;
   themePack: ThemePack;

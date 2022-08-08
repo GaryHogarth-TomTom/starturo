@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { IconRegistry } from '@ui-kitten/components';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { StatusBar } from 'expo-status-bar';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
@@ -19,6 +21,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
+      <IconRegistry icons={EvaIconsPack} />
       <PersistGate loading={null} persistor={persistor}>
         <StatusBar style="auto" />
         <RootView />
