@@ -17,8 +17,7 @@ export const useThemeMode = (): ThemeMode => {
       } else {
         return 'light';
       }
-    } else {
-      return themeMode;
     }
+    return themeMode;
   }, [systemTheme, themeMode]);
 };
