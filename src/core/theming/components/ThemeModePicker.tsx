@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { IndexPath, Select, SelectItem, Text } from '@ui-kitten/components';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
+
+import { Dropdown } from '#app/components/Dropdown';
 
 import { ALLOWED_THEME_MODE_OPTIONS, ThemeModeOption } from '../config';
 import { getThemeMode, setThemeMode } from '../store/themeSlice';
@@ -19,31 +20,13 @@ export const ThemeModePicker = () => {
   );
   const themeMode = useSelector(getThemeMode);
   const dispatch = useDispatch();
-  const [selectedIndex, setSelectedIndex] = React.useState<IndexPath>(
-    new IndexPath(0),
+
+  return (
+    <Dropdown
+      label={t('theming.themeMode.label')}
+      onSelect={(value: ThemeModeOption) => dispatch(setThemeMode(value))}
+      selectedValue={themeMode}
+      data={data}
+    />
   );
-
-  useEffect(() => {
-    setSelectedIndex(
-      new IndexPath(data.findIndex(item => item.value === themeMode)),
-    );
-  }, [data, themeMode]);
-
-  return data ? (
-    <>
-      <Text category="label">{t('theming.themeMode.label')}</Text>
-      <Select
-        value={data[selectedIndex.row]?.label}
-        onSelect={index => {
-          if (!Array.isArray(index)) {
-            dispatch(setThemeMode(data[index.row]?.value));
-          }
-        }}
-      >
-        {data.map((item, i) => (
-          <SelectItem key={item.value} title={item.label} />
-        ))}
-      </Select>
-    </>
-  ) : null;
 };

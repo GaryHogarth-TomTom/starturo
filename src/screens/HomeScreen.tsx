@@ -1,8 +1,7 @@
 import React from 'react';
 
 import { StackNavigationProp } from '@react-navigation/stack';
-import { Layout, Button, TopNavigation } from '@ui-kitten/components';
-import { Box, Text } from 'native-base';
+import { Layout, Text, Button, TopNavigation } from '@ui-kitten/components';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native';
@@ -28,11 +27,8 @@ export const HomeScreen = ({ navigation }: Props) => {
     <SafeAreaView style={{ flex: 1 }}>
       <TopNavigation title="MyApp" alignment="center" />
       <Divider />
-      <Box>
-        <Text>Test</Text>
-      </Box>
       <Layout style={styles.container}>
-        <Text fontSize="xl">DETAILS</Text>
+        <Text category="h1">DETAILS</Text>
         <Button onPress={() => dispatch(setThemeMode('light'))}>
           Light Mode
         </Button>

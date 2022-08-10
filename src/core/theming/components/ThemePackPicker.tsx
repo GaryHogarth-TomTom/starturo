@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { IndexPath, Select, SelectItem, Text } from '@ui-kitten/components';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
+
+import { Dropdown } from '#app/components/Dropdown';
 
 import { ALLOWED_THEME_PACKS, ThemePack } from '../config';
 import { setThemePack, getThemePack } from '../store/themeSlice';
@@ -19,31 +20,12 @@ export const ThemePackPicker = () => {
   );
   const themePack = useSelector(getThemePack);
   const dispatch = useDispatch();
-  const [selectedIndex, setSelectedIndex] = React.useState<IndexPath>(
-    new IndexPath(0),
+  return (
+    <Dropdown
+      label={t('theming.themePack.label')}
+      onSelect={(value: ThemePack) => dispatch(setThemePack(value))}
+      selectedValue={themePack}
+      data={data}
+    />
   );
-
-  useEffect(() => {
-    setSelectedIndex(
-      new IndexPath(data.findIndex(item => item.value === themePack)),
-    );
-  }, [data, themePack]);
-
-  return data ? (
-    <>
-      <Text category="label">{t('i18n.language')}</Text>
-      <Select
-        value={data[selectedIndex.row]?.label}
-        onSelect={index => {
-          if (!Array.isArray(index)) {
-            dispatch(setThemePack(data[index.row]?.value));
-          }
-        }}
-      >
-        {data.map((item, i) => (
-          <SelectItem key={item.value} title={item.label} />
-        ))}
-      </Select>
-    </>
-  ) : null;
 };

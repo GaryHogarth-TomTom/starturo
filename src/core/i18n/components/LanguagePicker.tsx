@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { IndexPath, Select, SelectItem, Text } from '@ui-kitten/components';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
+
+import { Dropdown } from '#app/components/Dropdown';
 
 import { SUPPORTED_LANGUAGES, Language } from '../i18n';
 import { getLanguage, setLanguage } from '../store/i18nSlice';
 import { nativeLanguageNames } from '../utils/languageMap';
 
 export const LanguagePicker = () => {
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
   const data = React.useMemo(
     () =>
       SUPPORTED_LANGUAGES.map((language: Language) => ({
@@ -20,33 +21,15 @@ export const LanguagePicker = () => {
   );
   const selectedLanguage = useSelector(getLanguage);
   const dispatch = useDispatch();
-  const [selectedIndex, setSelectedIndex] = React.useState<IndexPath>(
-    new IndexPath(0),
+
+  return (
+    <Dropdown
+      label={t('i18n.language')}
+      onSelect={(value: Language) => dispatch(setLanguage(value))}
+      selectedValue={selectedLanguage}
+      data={data}
+    />
   );
-
-  useEffect(() => {
-    setSelectedIndex(
-      new IndexPath(data.findIndex(item => item.value === selectedLanguage)),
-    );
-  }, [data, selectedLanguage]);
-
-  return data ? (
-    <>
-      <Text category="label">{t('i18n.language')}</Text>
-      <Select
-        value={data[selectedIndex.row]?.label}
-        onSelect={index => {
-          if (!Array.isArray(index)) {
-            dispatch(setLanguage(data[index.row]?.value));
-          }
-        }}
-      >
-        {data.map((item, i) => (
-          <SelectItem key={item.value} title={item.label} />
-        ))}
-      </Select>
-    </>
-  ) : null;
 };
 
 // export const LanguagePicker = () => {

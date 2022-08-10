@@ -13,6 +13,12 @@
     "preferences": "Preferences"
   },
   "theming": {
+    "ux": {
+      "label": "UX Library",
+      "kitten": "UI Kitten",
+      "paper": "react-native-paper",
+      "elements": "react-native-elements"
+    },
     "themePack": {
       "label": "Theme Pack",
       "default": "Default",

@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, ThemeType } from '@ui-kitten/components';
-import { extendTheme, NativeBaseProvider, useColorMode } from 'native-base';
+import { Provider as PaperProvider } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 
 import { LanguageListener } from '#app/core/i18n/';
@@ -24,11 +24,11 @@ export const RootView = () => {
 
   return (
     <ApplicationProvider {...eva} theme={theme}>
-      <NativeBaseProvider>
+      <PaperProvider>
         <ThemeListener />
         <LanguageListener />
         <NavigationView />
-      </NativeBaseProvider>
+      </PaperProvider>
     </ApplicationProvider>
   );
 };
