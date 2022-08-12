@@ -1,30 +1,23 @@
 import React from 'react';
 
-import * as eva from '@eva-design/eva';
-import { ApplicationProvider, ThemeType } from '@ui-kitten/components';
-import {
-  NativeBaseProvider,
-  Text,
-  Box,
-  StorageManager,
-  ColorMode,
-} from 'native-base';
-import { Provider as PaperProvider } from 'react-native-paper';
-import { useSelector } from 'react-redux';
+import { NativeBaseProvider, StorageManager, ColorMode } from 'native-base';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { LanguageListener } from '#app/core/i18n/';
-import { themeLibrary, getThemePack } from '#app/core/theming';
+import { themeLibrary, getThemePack, setThemeMode } from '#app/core/theming';
 
 import { NavigationView } from './NavigationView';
 import { ThemeListener } from './core/theming/components/ThemeListener';
+import { ALLOWED_THEME_MODES } from './core/theming/config';
 import { useThemeMode } from './core/theming/hooks/useThemeMode';
 
 export const RootView = () => {
   const themePack = useSelector(getThemePack);
+  const dispatch = useDispatch();
 
   const themeMode = useThemeMode();
 
-  const theme: ThemeType =
+  const theme =
     themeMode === 'dark'
       ? themeLibrary[themePack].dark
       : themeLibrary[themePack].light;
@@ -39,7 +32,7 @@ export const RootView = () => {
     },
     set: async (value: ColorMode) => {
       try {
-        // await AsyncStorage.setItem('@my-app-color-mode', value);
+        dispatch(setThemeMode(value === 'dark' ? 'dark' : 'light'));
       } catch (e) {
         console.log(e);
       }
@@ -47,14 +40,10 @@ export const RootView = () => {
   };
 
   return (
-    <ApplicationProvider {...eva} theme={theme}>
-      <PaperProvider>
-        <NativeBaseProvider colorModeManager={colorModeManager}>
-          <ThemeListener />
-          <LanguageListener />
-          <NavigationView />
-        </NativeBaseProvider>
-      </PaperProvider>
-    </ApplicationProvider>
+    <NativeBaseProvider colorModeManager={colorModeManager}>
+      <ThemeListener />
+      <LanguageListener />
+      <NavigationView />
+    </NativeBaseProvider>
   );
 };

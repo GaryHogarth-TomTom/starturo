@@ -2,8 +2,16 @@ import React from 'react';
 
 import { CheckIcon, FormControl, Select } from 'native-base';
 
-import { Data, DropdownProps } from '.';
-
+export type Data = {
+  label: string;
+  value: string;
+};
+export type DropdownProps = {
+  label: string;
+  data: Data[];
+  selectedValue: string;
+  onSelect: (newValue: any) => void;
+};
 export const Dropdown = ({
   label,
   selectedValue,

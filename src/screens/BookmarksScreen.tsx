@@ -2,7 +2,7 @@ import React from 'react';
 
 import { StackNavigationProp } from '@react-navigation/stack';
 import { FlashList } from '@shopify/flash-list';
-import { Card, Text, Layout } from '@ui-kitten/components';
+import { Box } from 'native-base';
 import { useTranslation } from 'react-i18next';
 import { ImageSourcePropType, Linking, StyleSheet } from 'react-native';
 
@@ -46,26 +46,14 @@ export const BookmarksScreen = ({ navigation }: Props) => {
     [i18n.language],
   );
   return (
-    <Layout style={styles.container}>
+    <>
       <FlashList
         estimatedItemSize={300}
         renderItem={({ item }) => {
-          return (
-            <Card onPress={() => Linking.openURL(item.link)}>
-              <Text category="h3">{item.title}</Text>
-              <Text>{item.description}</Text>
-            </Card>
-          );
+          return <Box>{item.title}</Box>;
         }}
         data={links}
       />
-    </Layout>
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 12,
-  },
-});

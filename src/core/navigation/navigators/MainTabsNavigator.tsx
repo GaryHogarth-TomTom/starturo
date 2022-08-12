@@ -10,10 +10,14 @@ import { HomeScreen } from '#app/screens/HomeScreen';
 import { PreferencesScreen } from '#app/screens/PreferencesScreen';
 import { ProfileScreen } from '#app/screens/ProfileScreen';
 
-import { MainTabsNavigatorParams } from '.';
-
 const BottomTabs = createBottomTabNavigator<MainTabsNavigatorParams>();
 
+export type MainTabsNavigatorParams = {
+  Home: undefined;
+  Profile: undefined;
+  Preferences: undefined;
+  Bookmarks: undefined;
+};
 export const MainTabsNavigator = () => {
   const { t } = useTranslation();
   return (
@@ -26,7 +30,7 @@ export const MainTabsNavigator = () => {
             <Icon
               as={Ionicons}
               name="home-outline"
-              size={6}
+              size={5}
               color="coolGray.800"
               _dark={{
                 color: 'warmGray.50',
@@ -44,7 +48,7 @@ export const MainTabsNavigator = () => {
             <Icon
               as={Ionicons}
               name="person-outline"
-              size={6}
+              size={5}
               color="coolGray.800"
               _dark={{
                 color: 'warmGray.50',
@@ -62,7 +66,7 @@ export const MainTabsNavigator = () => {
             <Icon
               as={Ionicons}
               name="bookmarks-outline"
-              size={6}
+              size={5}
               color="coolGray.800"
               _dark={{
                 color: 'warmGray.50',
@@ -80,7 +84,7 @@ export const MainTabsNavigator = () => {
             <Icon
               as={Ionicons}
               name="settings-outline"
-              size={6}
+              size={5}
               color="coolGray.800"
               _dark={{
                 color: 'warmGray.50',
