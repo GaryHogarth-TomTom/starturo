@@ -2,6 +2,13 @@ import React from 'react';
 
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, ThemeType } from '@ui-kitten/components';
+import {
+  NativeBaseProvider,
+  Text,
+  Box,
+  StorageManager,
+  ColorMode,
+} from 'native-base';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { useSelector } from 'react-redux';
 
@@ -22,12 +29,31 @@ export const RootView = () => {
       ? themeLibrary[themePack].dark
       : themeLibrary[themePack].light;
 
+  const colorModeManager: StorageManager = {
+    get: async () => {
+      try {
+        return themeMode === 'dark' ? 'dark' : 'light';
+      } catch (e) {
+        return 'light';
+      }
+    },
+    set: async (value: ColorMode) => {
+      try {
+        // await AsyncStorage.setItem('@my-app-color-mode', value);
+      } catch (e) {
+        console.log(e);
+      }
+    },
+  };
+
   return (
     <ApplicationProvider {...eva} theme={theme}>
       <PaperProvider>
-        <ThemeListener />
-        <LanguageListener />
-        <NavigationView />
+        <NativeBaseProvider colorModeManager={colorModeManager}>
+          <ThemeListener />
+          <LanguageListener />
+          <NavigationView />
+        </NativeBaseProvider>
       </PaperProvider>
     </ApplicationProvider>
   );

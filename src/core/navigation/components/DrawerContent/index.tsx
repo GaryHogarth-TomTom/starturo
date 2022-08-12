@@ -8,12 +8,14 @@ import { UXLibrary } from '#app/core/theming/config';
 
 import { DrawerContent as Elements } from './DrawerContent.elements';
 import { DrawerContent as Kitten } from './DrawerContent.kitten';
+import { DrawerContent as NativeBase } from './DrawerContent.nativebase';
 import { DrawerContent as Paper } from './DrawerContent.paper';
 
 const Components = {
   kitten: Kitten,
   paper: Paper,
   elements: Elements,
+  nativebase: NativeBase,
 };
 
 export const DrawerContent = (props: DrawerContentComponentProps) => {

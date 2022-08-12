@@ -5,8 +5,8 @@ import {
   DrawerContentComponentProps,
 } from '@react-navigation/drawer';
 
+import { DrawerContent } from '../components/DrawerContent';
 import { MainTabsNavigator } from './MainTabsNavigator';
-import { DrawerContent } from './components/DrawerContent';
 
 export type RootNavigatorParams = {
   MainTabs: undefined;

@@ -7,6 +7,7 @@ import { UXLibrary } from '#app/core/theming/config';
 
 import { Dropdown as Elements } from './Dropdown.elements';
 import { Dropdown as Kitten } from './Dropdown.kitten';
+import { Dropdown as NativeBase } from './Dropdown.nativebase';
 import { Dropdown as Paper } from './Dropdown.paper';
 
 export type Data = {
@@ -24,6 +25,7 @@ const Components = {
   kitten: Kitten,
   paper: Paper,
   elements: Elements,
+  nativebase: NativeBase,
 };
 
 export const Dropdown = (props: DropdownProps) => {

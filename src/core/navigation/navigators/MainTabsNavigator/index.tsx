@@ -6,10 +6,10 @@ import { useSelector } from 'react-redux';
 import { getUXLibrary } from '#app/core/theming';
 import { UXLibrary } from '#app/core/theming/config';
 
-import { BottomTabBar as Elements } from './BottomTabBar.elements';
-import { BottomTabBar as Kitten } from './BottomTabBar.kitten';
-import { BottomTabBar as NativeBase } from './BottomTabBar.nativebase';
-import { BottomTabBar as Paper } from './BottomTabBar.paper';
+import { MainTabsNavigator as Elements } from './MainTabsNavigator.elements';
+import { MainTabsNavigator as Kitten } from './MainTabsNavigator.kitten';
+import { MainTabsNavigator as NativeBase } from './MainTabsNavigator.nativebase';
+import { MainTabsNavigator as Paper } from './MainTabsNavigator.paper';
 
 const Components = {
   kitten: Kitten,
@@ -18,7 +18,14 @@ const Components = {
   nativebase: NativeBase,
 };
 
-export const BottomTabBar = (props: BottomTabBarProps) => {
+export type MainTabsNavigatorParams = {
+  Home: undefined;
+  Profile: undefined;
+  Preferences: undefined;
+  Bookmarks: undefined;
+};
+
+export const MainTabsNavigator = (props: BottomTabBarProps) => {
   const uxLibrary: UXLibrary = useSelector(getUXLibrary);
   const Component = React.useMemo(
     () =>
@@ -27,5 +34,6 @@ export const BottomTabBar = (props: BottomTabBarProps) => {
         : Components['paper'],
     [uxLibrary],
   );
+  // @ts-expect-error
   return <Component {...props} />;
 };

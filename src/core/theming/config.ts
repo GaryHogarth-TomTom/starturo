@@ -7,5 +7,5 @@ export type ThemeModeOption = typeof ALLOWED_THEME_MODE_OPTIONS[number];
 export const ALLOWED_THEME_PACKS = <const> ['default', 'nature'];
 export type ThemePack = typeof ALLOWED_THEME_PACKS[number];
 
-export const ALLOWED_UX_LIBRARIES = <const> ['paper', 'elements', 'kitten'];
+export const ALLOWED_UX_LIBRARIES = <const> ['paper', 'elements', 'kitten', 'nativebase'];
 export type UXLibrary = typeof ALLOWED_UX_LIBRARIES[number];
