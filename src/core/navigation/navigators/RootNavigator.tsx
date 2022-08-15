@@ -1,29 +1,38 @@
 import React from 'react';
 
-import {
-  createDrawerNavigator,
-  DrawerContentComponentProps,
-} from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import { DrawerContent } from '../components/DrawerContent';
-import { MainTabsNavigator } from './MainTabsNavigator';
+import OtpVerification from '#app/screens/nativebase-starter/OTP';
+import SignUp from '#app/screens/nativebase-starter/SignUp';
+
+import { AppBar } from '../components/AppBar';
+import { LeftDrawerNavigator } from './LeftDrawerNavigator';
 
 export type RootNavigatorParams = {
-  MainTabs: undefined;
+  Root: undefined;
+  OTP: undefined;
+  SignUp: undefined;
 };
 
-const Stack = createDrawerNavigator<RootNavigatorParams>();
+const Stack = createStackNavigator<RootNavigatorParams>();
 
 export const RootNavigator = () => (
   <Stack.Navigator
-    initialRouteName="MainTabs"
-    // screenOptions={{
-    //   headerShown: false,
-    // }}
-    drawerContent={(props: DrawerContentComponentProps) => (
-      <DrawerContent {...props} />
-    )}
+    initialRouteName="Root"
+    screenOptions={{ header: props => <AppBar {...props} /> }}
   >
-    <Stack.Screen name="MainTabs" component={MainTabsNavigator} />
+    <Stack.Screen name="Root" component={LeftDrawerNavigator} />
+    <Stack.Screen
+      name="OTP"
+      options={{
+        title: 'Sample - OTP',
+      }}
+      component={OtpVerification}
+    />
+    <Stack.Screen
+      name="SignUp"
+      options={{ title: 'Sample - SignUp' }}
+      component={SignUp}
+    />
   </Stack.Navigator>
 );

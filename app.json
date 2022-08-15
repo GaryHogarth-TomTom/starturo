@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "http",
     "name": "starturo",
     "slug": "starturo",
     "version": "1.0.0",
