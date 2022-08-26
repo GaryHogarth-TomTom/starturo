@@ -2,10 +2,9 @@ import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
 import * as Linking from 'expo-linking';
-import { Box, Center, useTheme } from 'native-base';
+import { useTheme } from 'native-base';
 
 import { RootNavigator } from '#app/core/navigation';
-import { AppBar } from '#app/core/navigation/components/AppBar';
 import { useThemeMode } from '#app/core/theming';
 
 const prefix = Linking.createURL('/');

@@ -1,26 +1,27 @@
 import React from 'react';
 
-import { NativeBaseProvider, StorageManager, ColorMode } from 'native-base';
-import { useDispatch, useSelector } from 'react-redux';
+import {
+  NativeBaseProvider,
+  StorageManager,
+  ColorMode,
+  extendTheme,
+} from 'native-base';
+import { useDispatch } from 'react-redux';
 
 import { LanguageListener } from '#app/core/i18n/';
-import { themeLibrary, getThemePack, setThemeMode } from '#app/core/theming';
+import { setThemeMode } from '#app/core/theming';
+import { ThemeListener } from '#app/core/theming/components/ThemeListener';
+import { useThemeMode } from '#app/core/theming/hooks/useThemeMode';
+import { theme as defaultTheme } from '#app/core/theming/themes/default';
 
 import { NavigationView } from './NavigationView';
-import { ThemeListener } from './core/theming/components/ThemeListener';
-import { ALLOWED_THEME_MODES } from './core/theming/config';
-import { useThemeMode } from './core/theming/hooks/useThemeMode';
 
 export const RootView = () => {
-  const themePack = useSelector(getThemePack);
   const dispatch = useDispatch();
 
   const themeMode = useThemeMode();
 
-  const theme =
-    themeMode === 'dark'
-      ? themeLibrary[themePack].dark
-      : themeLibrary[themePack].light;
+  const theme = extendTheme(defaultTheme);
 
   const colorModeManager: StorageManager = {
     get: async () => {
@@ -40,7 +41,7 @@ export const RootView = () => {
   };
 
   return (
-    <NativeBaseProvider colorModeManager={colorModeManager}>
+    <NativeBaseProvider colorModeManager={colorModeManager} theme={theme}>
       <ThemeListener />
       <LanguageListener />
       <NavigationView />

@@ -6,6 +6,7 @@ module.exports = {
     'react/style-prop-object': 0,
     'react/require-default-props': 0,
     'import/extensions': 0,
+    quotes: [2, 'single', 'avoid-escape'],
   },
   globals: {
     __DEV__: 'readonly',

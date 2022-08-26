@@ -17,11 +17,11 @@ A simple Expo template with the following features:
 
 ### Third Party Libraries
 
-- react-native-paper
+- native-base
 - React Navigation v6
 - react-i18next
-- Redux ToolKit @TODO
-- Redux Persist @TODO
+- Redux ToolKit
+- Redux Persist
 - RevenueCat @TODO
 
 ## Usage

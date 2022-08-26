@@ -1,4 +1,6 @@
-import { FontAwesome, Feather, Entypo, Ionicons } from '@expo/vector-icons';
+import { useMemo } from 'react';
+
+import { Feather, Entypo, Ionicons } from '@expo/vector-icons';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import { StackHeaderProps, StackNavigationProp } from '@react-navigation/stack';
 import {
@@ -14,24 +16,44 @@ import {
   Text,
   useBreakpointValue,
 } from 'native-base';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Platform } from 'react-native';
+import { GravatarApi } from 'react-native-gravatar';
 
-export const AppBar = ({ navigation: _navigation }: StackHeaderProps) => {
+import { useAuth } from '#app/core/auth/hooks/useAuth';
+
+export const AppBar = (_props: StackHeaderProps) => {
   const navigation: StackNavigationProp<any> = useNavigation();
-  const { top } = useSafeAreaInsets();
+  const { user } = useAuth();
   const onPressMenuButton = useBreakpointValue({
     base: () => navigation.dispatch(DrawerActions.toggleDrawer()),
     lg: () => {},
   });
-  const onPressAvatarButton = useBreakpointValue({
-    base: () => navigation.dispatch(DrawerActions.toggleDrawer()),
-  });
+
+  const onPressAvatarButton: () => void = useMemo(
+    () =>
+      user
+        ? () => navigation.navigate('Account')
+        : () => navigation.navigate('Account'),
+    [user],
+  );
+
+  const avatarImage = useMemo(
+    () =>
+      user
+        ? GravatarApi.imageUrl({
+            email: user?.email,
+            parameters: { size: '200' },
+          })
+        : null,
+    [user],
+  );
   return (
     <>
       <StatusBar backgroundColor="#000" barStyle="light-content" />
       <Box
         safeAreaTop
         paddingRight={2}
+        paddingTop={Platform.OS === 'web' ? 2 : 0}
         paddingBottom={4}
         borderBottomWidth={1}
         _light={{ borderBottomColor: 'coolGray.300' }}
@@ -39,23 +61,8 @@ export const AppBar = ({ navigation: _navigation }: StackHeaderProps) => {
       >
         <HStack alignItems="center" justifyContent="space-between">
           <HStack space="2" alignItems="center">
-            <Hidden from="lg">
-              <IconButton
-                variant="ghost"
-                colorScheme="light"
-                onPress={onPressMenuButton}
-                icon={
-                  <Icon
-                    size="6"
-                    name="menu-sharp"
-                    as={Ionicons}
-                    _light={{ color: 'coolGray.800' }}
-                    _dark={{ color: 'coolGray.50' }}
-                  />
-                }
-              />
-            </Hidden>
             <Image
+              ml="2"
               h="8"
               w="8"
               alt="Starturo"
@@ -63,7 +70,7 @@ export const AppBar = ({ navigation: _navigation }: StackHeaderProps) => {
               source={require('#assets/logos/logo.png')}
             />
             <Hidden till="lg">
-              <Text h="10" fontSize={20} fontWeight="900">
+              <Text h="8" fontSize={20} fontWeight="900">
                 Starturo
               </Text>
             </Hidden>
@@ -71,72 +78,33 @@ export const AppBar = ({ navigation: _navigation }: StackHeaderProps) => {
           <HStack space="8" alignItems="center">
             <HStack space="2" alignItems="center">
               <IconButton
-                icon={
-                  <Icon
-                    size="6"
-                    _dark={{ color: 'coolGray.50' }}
-                    _light={{ color: 'coolGray.400' }}
-                    as={Entypo}
-                    name={'share'}
-                  />
-                }
-              />
-              <IconButton
-                icon={
-                  <Icon
-                    size="6"
-                    _dark={{ color: 'coolGray.50' }}
-                    _light={{ color: 'coolGray.400' }}
-                    as={Feather}
-                    name={'shopping-cart'}
-                  />
-                }
+                variant="ghost"
+                icon={<Icon size="6" as={Entypo} name={'share'} />}
               />
               <Pressable onPress={onPressAvatarButton}>
                 <Avatar
                   w="8"
                   h="8"
-                  borderWidth="2"
-                  _dark={{ borderColor: 'primary.700' }}
-                  source={{
-                    uri: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                  }}
-                />
+                  source={
+                    avatarImage
+                      ? {
+                          uri: avatarImage,
+                        }
+                      : undefined
+                  }
+                >
+                  <Icon size="5" as={Ionicons} name={'person'} />
+                </Avatar>
               </Pressable>
+              <Hidden from="lg">
+                <IconButton
+                  variant="primary"
+                  colorScheme="light"
+                  onPress={onPressMenuButton}
+                  icon={<Icon size="6" name="menu-sharp" as={Ionicons} />}
+                />
+              </Hidden>
             </HStack>
-            {/* 
-            <Menu
-              closeOnSelect={false}
-              w="190"
-              onOpen={() => console.log('opened')}
-              onClose={() => console.log('closed')}
-              trigger={triggerProps => {
-                return (
-                  <Pressable {...triggerProps}>
-                    <Avatar
-                      w="8"
-                      h="8"
-                      borderWidth="2"
-                      _dark={{ borderColor: 'primary.700' }}
-                      source={{
-                        uri: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                      }}
-                    />
-                  </Pressable>
-                );
-              }}
-            >
-              <Menu.Group title="Profile">
-                <Menu.Item>Account</Menu.Item>
-                <Menu.Item>Billing</Menu.Item>
-                <Menu.Item>Security</Menu.Item>
-              </Menu.Group>
-              <Divider mt="3" w="100%" />
-              <Menu.Group title="Shortcuts">
-                <Menu.Item>Settings</Menu.Item>
-                <Menu.Item>Logout</Menu.Item>
-              </Menu.Group>
-            </Menu> */}
           </HStack>
         </HStack>
       </Box>

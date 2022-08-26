@@ -8,15 +8,14 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BookmarksScreen } from '#app/screens/BookmarksScreen';
 import { HomeScreen } from '#app/screens/HomeScreen';
-import { PreferencesScreen } from '#app/screens/PreferencesScreen';
-import { ProfileScreen } from '#app/screens/ProfileScreen';
+import ProductScreen from '#app/screens/nativebase-starter/ProductScreen';
 
 const BottomTabs = createMaterialTopTabNavigator<MainTabsNavigatorParams>();
 
 export type MainTabsNavigatorParams = {
   Home: undefined;
-  Profile: undefined;
-  Preferences: undefined;
+  Diary: undefined;
+  Product: undefined;
   Bookmarks: undefined;
 };
 export const MainTabsNavigator = () => {
@@ -42,7 +41,6 @@ export const MainTabsNavigator = () => {
           marginHorizontal: 0,
         },
         tabBarIndicatorStyle: { top: 0 },
-        // tabBarShowLabel: false,
       }}
     >
       <BottomTabs.Screen
@@ -50,72 +48,30 @@ export const MainTabsNavigator = () => {
         options={{
           title: t('screens.home'),
           tabBarIcon: props => (
-            <Icon
-              as={Ionicons}
-              name="home-outline"
-              size={5}
-              color="coolGray.800"
-              _dark={{
-                color: 'warmGray.50',
-              }}
-            />
+            <Icon as={Ionicons} name="home-outline" size={5} />
           ),
         }}
         component={HomeScreen}
       />
       <BottomTabs.Screen
-        name="Profile"
+        name="Product"
+        component={ProductScreen}
         options={{
-          title: t('screens.profile'),
+          title: t('screens.shop'),
           tabBarIcon: props => (
-            <Icon
-              as={Ionicons}
-              name="person-outline"
-              size={5}
-              color="coolGray.800"
-              _dark={{
-                color: 'warmGray.50',
-              }}
-            />
+            <Icon as={Ionicons} name="basket-outline" size={5} />
           ),
         }}
-        component={ProfileScreen}
       />
       <BottomTabs.Screen
         name="Bookmarks"
         options={{
           title: t('screens.bookmarks'),
           tabBarIcon: props => (
-            <Icon
-              as={Ionicons}
-              name="bookmarks-outline"
-              size={5}
-              color="coolGray.800"
-              _dark={{
-                color: 'warmGray.50',
-              }}
-            />
+            <Icon as={Ionicons} name="bookmarks-outline" size={5} />
           ),
         }}
         component={BookmarksScreen}
-      />
-      <BottomTabs.Screen
-        name="Preferences"
-        options={{
-          title: t('screens.preferences'),
-          tabBarIcon: props => (
-            <Icon
-              as={Ionicons}
-              name="settings-outline"
-              size={5}
-              color="coolGray.800"
-              _dark={{
-                color: 'warmGray.50',
-              }}
-            />
-          ),
-        }}
-        component={PreferencesScreen}
       />
     </BottomTabs.Navigator>
   );

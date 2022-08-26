@@ -4,7 +4,7 @@ import { render } from '@testing-library/react-native';
 
 import { TestWrapper } from '#app/testing';
 
-import { HomeScreen } from '../HomeScreen';
+import { PreferencesScreen } from '../PreferencesScreen';
 
 it('Renders the Home Screen', () => {
   const push = jest.fn();
@@ -12,7 +12,7 @@ it('Renders the Home Screen', () => {
   // @ts-ignore
   // Ignoring next line because we don't need to pass all React Navigation related props down to the
   // screen for this test to work.
-  const out = render(<HomeScreen navigation={{ push, navigate }} />, {
+  const out = render(<PreferencesScreen navigation={{ push, navigate }} />, {
     wrapper: TestWrapper,
   });
 

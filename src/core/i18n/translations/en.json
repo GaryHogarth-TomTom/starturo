@@ -10,7 +10,9 @@
     "bookmarks": "Bookmarks",
     "profile": "Profile",
     "map": "Map",
-    "preferences": "Preferences"
+    "preferences": "Preferences",
+    "signin": "Join/Login",
+    "shop": "Shop"
   },
   "theming": {
     "ux": {
@@ -39,6 +41,11 @@
       "heading": "Theming",
       "theme": "Theme",
       "darkMode": "Dark mode"
+    }
+  },
+  "auth": {
+    "signIn": {
+      "buttonLabel": "Sign In"
     }
   }
 }

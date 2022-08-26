@@ -3,7 +3,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Dropdown } from '#app/components/Dropdown';
+import { Dropdown } from '#app/components/input/Dropdown';
 
 import { SUPPORTED_LANGUAGES, Language } from '../i18n';
 import { getLanguage, setLanguage } from '../store/i18nSlice';

@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
+import { Entypo } from '@expo/vector-icons';
 import { DrawerContentScrollView } from '@react-navigation/drawer';
 import { DrawerContentComponentProps } from '@react-navigation/drawer/lib/typescript/src/types';
-import { Box, Divider, Text, VStack } from 'native-base';
+import { Icon, VStack } from 'native-base';
 
+import { useAuth } from '#app/core/auth/hooks/useAuth';
+
+import { DrawerItem } from './DrawerItem';
 import { DrawerItemList } from './DrawerItemList';
 
-export const DrawerContent = ({
-  descriptors,
-  state,
-  ...rest
-}: DrawerContentComponentProps) => {
+export const DrawerContent = (props: DrawerContentComponentProps) => {
+  const { descriptors, state, navigation, ...rest } = props;
   const focusedRoute = state.routes[state.index];
   const focusedDescriptor = descriptors[focusedRoute.key];
   const focusedOptions = focusedDescriptor.options;
   const { drawerContentStyle, drawerContentContainerStyle } = focusedOptions;
+  const { user } = useAuth();
 
   return (
     <DrawerContentScrollView
@@ -22,20 +24,12 @@ export const DrawerContent = ({
       contentContainerStyle={drawerContentContainerStyle}
       style={drawerContentStyle}
     >
-      <VStack space="6" my="2" mx="1">
-        <Box px="4">
-          <Text bold color="gray.700">
-            Mail
-          </Text>
-          <Text fontSize="14" mt="1" color="gray.500" fontWeight="500">
-            john_doe@gmail.com
-          </Text>
-        </Box>
-        <VStack divider={<Divider />} space="4">
-          <VStack space="3">
-            <DrawerItemList descriptors={descriptors} state={state} {...rest} />
-          </VStack>
-        </VStack>
+      <VStack space="4" my="1" mx="1">
+        <DrawerItem
+          label={user ? user?.email : 'Sign In'}
+          onPress={() => navigation.navigate('SignIn')}
+        />
+        <DrawerItemList {...props} />
       </VStack>
     </DrawerContentScrollView>
   );

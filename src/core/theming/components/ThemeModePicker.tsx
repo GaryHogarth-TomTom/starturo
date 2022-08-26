@@ -3,7 +3,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Dropdown } from '#app/components/Dropdown';
+import { Dropdown } from '#app/components/input/Dropdown';
 
 import { ALLOWED_THEME_MODE_OPTIONS, ThemeModeOption } from '../config';
 import { getThemeMode, setThemeMode } from '../store/themeSlice';

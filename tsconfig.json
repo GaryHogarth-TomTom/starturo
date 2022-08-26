@@ -5,7 +5,8 @@
     "paths": {
       "#app/*": ["src/*"],
       "#assets/*": ["assets/*"]
-    }
+    },
+    "typeRoots": ["./types", "./node_modules/@types"]
   },
   "extends": "expo/tsconfig.base"
 }

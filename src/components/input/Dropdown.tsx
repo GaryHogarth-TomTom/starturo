@@ -19,15 +19,13 @@ export const Dropdown = ({
   onSelect,
 }: DropdownProps) => {
   return data ? (
-    <FormControl isInvalid>
+    <FormControl>
       <FormControl.Label>{label}</FormControl.Label>
       <Select
         selectedValue={selectedValue}
-        minWidth="200"
-        accessibilityLabel="Choose Service"
-        placeholder="Choose Service"
+        accessibilityLabel={label}
+        placeholder={label}
         _selectedItem={{
-          bg: 'teal.600',
           endIcon: <CheckIcon size="5" />,
         }}
         mt={1}

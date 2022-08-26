@@ -7,12 +7,10 @@ import { ThemeModeOption, ThemePack, UXLibrary } from '../config';
 
 export interface ThemeState {
   themeMode: ThemeModeOption;
-  themePack: ThemePack;
 }
 
-const initialState: ThemeState = {
+export const initialState: ThemeState = {
   themeMode: 'system',
-  themePack: 'default',
 };
 
 export const themeSlice = createSlice({
@@ -22,17 +20,11 @@ export const themeSlice = createSlice({
     setThemeMode: (state, action: PayloadAction<ThemeModeOption>) => {
       state.themeMode = action.payload;
     },
-    setThemePack: (state, action: PayloadAction<ThemePack>) => {
-      state.themePack = action.payload;
-    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setThemeMode, setThemePack } = themeSlice.actions;
-
-export const getThemePack = (state: RootState): ThemePack =>
-  state.theme.themePack;
+export const { setThemeMode } = themeSlice.actions;
 
 export const getThemeMode = (state: RootState): ThemeModeOption =>
   state.theme.themeMode;

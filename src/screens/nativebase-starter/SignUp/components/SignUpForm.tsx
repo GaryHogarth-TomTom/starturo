@@ -1,69 +1,34 @@
 import React, { useState } from 'react';
 
-import { Entypo } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import {
   Button,
+  Checkbox,
   HStack,
   VStack,
   Text,
   Link,
-  Checkbox,
   Divider,
-  useColorModeValue,
-  IconButton,
   Icon,
+  IconButton,
+  useColorModeValue,
   Pressable,
-  Center,
   Hidden,
-  useToast,
-  Input,
+  Center,
 } from 'native-base';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { useSignIn } from 'react-supabase';
 
-import { FloatingLabelInput } from './components/FloatingLabelInput';
-import IconFacebook from './components/IconFacebook';
-import IconGoogle from './components/IconGoogle';
+import FloatingLabelInput from './FloatingLabelInput';
+import IconFacebook from './IconFacebook';
+import IconGoogle from './IconGoogle';
 
-export const SignIn = (props: any) => {
-  const [{ error, fetching, session, user }, signIn] = useSignIn();
-
+export const SignUpForm = ({ props }: any) => {
   // add next router here
-  const [email, setEmail] = useState('');
-  const [password, setPass] = useState('');
+  const [text, setText] = useState('');
+  const [pass, setPass] = useState('');
+  const [confirm_pass, setConfirmPass] = useState('');
   const [showPass, setShowPass] = React.useState(false);
-  const [loading, setLoading] = useState(false);
-  const toast = useToast();
-
-  const signInWithEmail = async () => {
-    setLoading(true);
-    const { error, session, user } = await signIn({
-      email,
-      password,
-    });
-    if (error) {
-      if (!toast.isActive('login')) {
-        toast.show({
-          id: 'login',
-          title: error.message,
-        });
-      }
-    }
-    setLoading(false);
-  };
-
-  const signUpWithEmail = async () => {
-    // setLoading(true);
-    // await supabase.auth.signOut();
-    // const { user, error } = await supabase.auth.signUp({
-    //   email: email,
-    //   password: password,
-    // });
-    // console.log(user, error);
-    // if (error) Alert.alert(error.message);
-    // setLoading(false);
-  };
-
+  const [showConfirmPass, setShowConfirmPass] = React.useState(false);
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={{
@@ -77,8 +42,8 @@ export const SignIn = (props: any) => {
         py="9"
         _light={{ bg: 'white' }}
         _dark={{ bg: 'coolGray.800' }}
-        space="3"
         justifyContent="space-between"
+        space="3"
         borderTopRightRadius={{ base: '2xl', md: 'xl' }}
         borderBottomRightRadius={{ base: '0', md: 'xl' }}
         borderTopLeftRadius={{ base: '2xl', md: '0' }}
@@ -86,21 +51,20 @@ export const SignIn = (props: any) => {
         <VStack space="7">
           <Hidden till="md">
             <Text fontSize="lg" fontWeight="normal">
-              Sign in to continue!
+              Sign up to continue!
             </Text>
           </Hidden>
           <VStack>
-            <VStack space="3">
+            <VStack space="8">
               <VStack space={{ base: '7', md: '4' }}>
-                <Input
-                  autoCapitalize="none"
-                  keyboardType="email-address"
+                <FloatingLabelInput
                   isRequired
+                  label="Email"
                   labelColor="#9ca3af"
                   labelBGColor={useColorModeValue('#fff', '#1f2937')}
                   borderRadius="4"
-                  defaultValue={email}
-                  onChangeText={(text: string) => setEmail(text)}
+                  defaultValue={text}
+                  onChangeText={(txt: any) => setText(txt)}
                   _text={{
                     fontSize: 'sm',
                     fontWeight: 'medium',
@@ -112,15 +76,15 @@ export const SignIn = (props: any) => {
                     borderColor: 'coolGray.300',
                   }}
                 />
-                <Input
+                <FloatingLabelInput
                   isRequired
                   type={showPass ? '' : 'password'}
                   label="Password"
                   borderRadius="4"
                   labelColor="#9ca3af"
                   labelBGColor={useColorModeValue('#fff', '#1f2937')}
-                  defaultValue={password}
-                  onChangeText={(text: string) => setPass(text)}
+                  defaultValue={pass}
+                  onChangeText={(txt: any) => setPass(txt)}
                   InputRightElement={
                     <IconButton
                       variant="unstyled"
@@ -128,12 +92,49 @@ export const SignIn = (props: any) => {
                         <Icon
                           size="4"
                           color="coolGray.400"
-                          as={Entypo}
+                          as={AntDesign}
                           name={showPass ? 'eye-with-line' : 'eye'}
                         />
                       }
                       onPress={() => {
-                        setShowPass(true);
+                        setShowPass(!showPass);
+                      }}
+                    />
+                  }
+                  _text={{
+                    fontSize: 'sm',
+                    fontWeight: 'medium',
+                  }}
+                  _dark={{
+                    borderColor: 'coolGray.700',
+                  }}
+                  _light={{
+                    borderColor: 'coolGray.300',
+                  }}
+                />
+
+                <FloatingLabelInput
+                  isRequired
+                  type={showConfirmPass ? '' : 'password'}
+                  label="Confirm Password"
+                  borderRadius="4"
+                  labelColor="#9ca3af"
+                  labelBGColor={useColorModeValue('#fff', '#1f2937')}
+                  defaultValue={confirm_pass}
+                  onChangeText={(txt: any) => setConfirmPass(txt)}
+                  InputRightElement={
+                    <IconButton
+                      variant="unstyled"
+                      icon={
+                        <Icon
+                          size="4"
+                          color="coolGray.400"
+                          as={AntDesign}
+                          name={showConfirmPass ? 'eye-with-line' : 'eye'}
+                        />
+                      }
+                      onPress={() => {
+                        setShowConfirmPass(!showConfirmPass);
                       }}
                     />
                   }
@@ -149,48 +150,65 @@ export const SignIn = (props: any) => {
                   }}
                 />
               </VStack>
-              <Link
-                ml="auto"
-                _text={{
-                  fontSize: 'xs',
-                  fontWeight: 'bold',
-                  textDecoration: 'none',
-                }}
-                _light={{
-                  _text: {
-                    color: 'primary.900',
-                  },
-                }}
-                _dark={{
-                  _text: {
-                    color: 'primary.500',
-                  },
-                }}
-              >
-                Forgot password?
-              </Link>
               <Checkbox
                 alignItems="flex-start"
-                mt="5"
-                isChecked
+                defaultIsChecked
                 value="demo"
                 colorScheme="primary"
                 accessibilityLabel="Remember me"
               >
-                <Text
-                  pl="3"
-                  fontWeight="normal"
-                  _light={{ color: 'coolGray.800' }}
-                  _dark={{ color: 'coolGray.400' }}
-                >
-                  Remember me and keep me logged in
-                </Text>
+                <HStack alignItems="center">
+                  <Text fontSize="sm" color="coolGray.400" pl="2">
+                    I accept the{' '}
+                  </Text>
+                  <Link
+                    _text={{
+                      fontSize: 'sm',
+                      fontWeight: 'semibold',
+                      textDecoration: 'none',
+                    }}
+                    _light={{
+                      _text: {
+                        color: 'primary.900',
+                      },
+                    }}
+                    _dark={{
+                      _text: {
+                        color: 'primary.500',
+                      },
+                    }}
+                  >
+                    Terms of Use
+                  </Link>
+                  <Text fontSize="sm"> & </Text>
+
+                  <Link
+                    _text={{
+                      fontSize: 'sm',
+                      fontWeight: 'semibold',
+                      textDecoration: 'none',
+                    }}
+                    _light={{
+                      _text: {
+                        color: 'primary.900',
+                      },
+                    }}
+                    _dark={{
+                      _text: {
+                        color: 'primary.500',
+                      },
+                    }}
+                  >
+                    Privacy Policy
+                  </Link>
+                </HStack>
               </Checkbox>
+              {/* Opening Link Tag navigateTo:"OTP" (react/Router) */}
               <Button
-                mt="5"
                 size="md"
                 borderRadius="4"
                 _text={{
+                  fontSize: 'sm',
                   fontWeight: 'medium',
                 }}
                 _light={{
@@ -199,33 +217,16 @@ export const SignIn = (props: any) => {
                 _dark={{
                   bg: 'primary.700',
                 }}
-                onPress={signInWithEmail}
-              >
-                SIGN IN
-              </Button>
-              <Button
-                disabled={email.length === 0 || password.length === 0}
-                mt="5"
-                size="md"
-                borderRadius="4"
-                _text={{
-                  fontWeight: 'medium',
+                onPress={() => {
+                  props.navigation.navigate('OTP');
                 }}
-                _light={{
-                  bg: 'primary.900',
-                }}
-                _dark={{
-                  bg: 'primary.700',
-                }}
-                onPress={signUpWithEmail}
               >
                 SIGN UP
               </Button>
               {/* Closing Link Tag */}
               <HStack
-                mt="5"
                 space="2"
-                mb={{ base: 6, md: 7 }}
+                mb={{ base: '6', md: '7' }}
                 alignItems="center"
                 justifyContent="center"
               >
@@ -235,6 +236,7 @@ export const SignIn = (props: any) => {
                   _dark={{ bg: 'coolGray.700' }}
                 ></Divider>
                 <Text
+                  fontSize="sm"
                   fontWeight="medium"
                   _light={{ color: 'coolGray.300' }}
                   _dark={{ color: 'coolGray.500' }}
@@ -263,20 +265,21 @@ export const SignIn = (props: any) => {
         <HStack
           mb="4"
           space="1"
-          safeAreaBottom
           alignItems="center"
           justifyContent="center"
           mt={{ base: 'auto', md: '8' }}
         >
           <Text
+            fontSize="sm"
             _light={{ color: 'coolGray.800' }}
             _dark={{ color: 'coolGray.400' }}
           >
-            Don't have an account?
+            Already have an account?
           </Text>
-          {/* Opening Link Tag navigateTo:"SignUp" */}
+          {/* Opening Link Tag navigateTo:"SignIn" */}
           <Link
             _text={{
+              fontSize: 'sm',
               fontWeight: 'bold',
               textDecoration: 'none',
             }}
@@ -291,10 +294,10 @@ export const SignIn = (props: any) => {
               },
             }}
             onPress={() => {
-              props.navigation.navigate('SignUp');
+              props.navigation.navigate('SignIn');
             }}
           >
-            Sign up
+            Sign in
           </Link>
           {/* Closing Link Tag */}
         </HStack>

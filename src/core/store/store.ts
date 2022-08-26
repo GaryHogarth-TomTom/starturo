@@ -12,13 +12,29 @@ import {
   REGISTER,
 } from 'redux-persist';
 
-import i18nReducer from '#app/core/i18n/store/i18nSlice';
-import themeReducer from '#app/core/theming/store/themeSlice';
+import i18nReducer, {
+  initialState as i18nInitialState,
+} from '#app/core/i18n/store/i18nSlice';
+import navigationReducer, {
+  initialState as navigationInitialState,
+} from '#app/core/navigation/store/navigationSlice';
+import themeReducer, {
+  initialState as themeInitialState,
+} from '#app/core/theming/store/themeSlice';
 
-const rootReducer = combineReducers({
+export const RootReducer = {
   theme: themeReducer,
   i18n: i18nReducer,
-});
+  navigation: navigationReducer,
+};
+
+export const initialState = {
+  theme: themeInitialState,
+  i18n: i18nInitialState,
+  navigation: navigationInitialState,
+};
+
+const rootReducer = combineReducers(RootReducer);
 
 const persistConfig = {
   key: 'starturo',

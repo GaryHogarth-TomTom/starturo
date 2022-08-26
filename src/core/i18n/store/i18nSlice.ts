@@ -10,7 +10,7 @@ export interface I18nState {
   language: Language | string;
 }
 
-const initialState: I18nState = {
+export const initialState: I18nState = {
   language: Localization.locale,
 };
 
