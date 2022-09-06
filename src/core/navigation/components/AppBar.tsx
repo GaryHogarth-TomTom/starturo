@@ -85,6 +85,9 @@ export const AppBar = (_props: StackHeaderProps) => {
                 <Avatar
                   w="8"
                   h="8"
+                  backgroundColor="transparent"
+                  borderWidth="1"
+                  borderColor="coolGray.400"
                   source={
                     avatarImage
                       ? {

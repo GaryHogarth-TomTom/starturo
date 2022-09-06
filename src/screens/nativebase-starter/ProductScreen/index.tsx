@@ -299,6 +299,7 @@ export default function (props: any) {
                         {categories.map((item: any) => {
                           return (
                             <Button
+                              key={item.category}
                               py="4"
                               px="5"
                               borderRadius="4"

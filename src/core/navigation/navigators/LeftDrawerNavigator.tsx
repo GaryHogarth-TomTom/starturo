@@ -1,18 +1,16 @@
 import React from 'react';
 
-import { Entypo, Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import {
   createDrawerNavigator,
   DrawerContentComponentProps,
 } from '@react-navigation/drawer';
-import { Icon, useBreakpointValue } from 'native-base';
+import { useBreakpointValue } from 'native-base';
 import { useTranslation } from 'react-i18next';
 
+import { Icon } from '#app/components/icon/Icon';
 import { useAuth } from '#app/core/auth/hooks/useAuth';
-import { SignIn } from '#app/core/auth/screens/SignIn';
 import { PreferencesScreen } from '#app/screens/PreferencesScreen';
-import ProductScreen from '#app/screens/nativebase-starter/ProductScreen';
-import { SignUp } from '#app/screens/nativebase-starter/SignUp';
 
 import { DrawerContent } from '../components/DrawerContent';
 import { AccountNavigator } from './AccountNavigator';
@@ -69,9 +67,7 @@ export const LeftDrawerNavigator = () => {
         component={MainTabsNavigator}
         options={{
           title: t('screens.home'),
-          drawerIcon: props => (
-            <Icon as={Ionicons} name="home-outline" {...props} />
-          ),
+          drawerIcon: props => <Icon name="home" {...props} />,
         }}
       />
       <Drawer.Screen

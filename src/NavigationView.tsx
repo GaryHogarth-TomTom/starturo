@@ -17,7 +17,6 @@ export const NavigationView = () => {
     prefixes: [prefix],
     config: {
       screens: {
-        OTP: 'otp',
         Root: {
           screens: {
             Tabs: {
@@ -26,11 +25,15 @@ export const NavigationView = () => {
                 Home: 'home',
                 Bookmarks: 'bookmarks',
                 Preferences: 'user/settings',
+                Product: 'product',
               },
             },
-            SignIn: 'sign-in',
-            SignUp: 'register',
-            Product: 'product',
+            Account: {
+              screens: {
+                SignIn: 'sign-in',
+                SignUp: 'register',
+              },
+            },
           },
         },
       },

@@ -6,6 +6,7 @@
     "gorhom",
     "persistor",
     "reduxjs",
+    "signin",
     "starturo"
   ]
 }
