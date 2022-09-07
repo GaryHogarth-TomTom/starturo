@@ -14,7 +14,9 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.starturo.base"
@@ -23,15 +25,31 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.starturo.base"
     },
     "web": {
       "favicon": "./assets/favicon.png",
       "build": {
         "babel": {
-          "include": ["@ui-kitten/components"]
+          "include": [
+            "@ui-kitten/components"
+          ]
         }
       }
+    },
+    "plugins": [
+      [
+        "onesignal-expo-plugin",
+        {
+          "mode": "development"
+        }
+      ]
+    ],
+    "extra": {
+      "oneSignalAppId": "b251ddfc-f035-41f1-9d3f-e768895ba457",
+      "supabaseUrl": "supahttps://vdlrflkjzlqagzcuyluq.supabase.cobaseUrl",
+      "supabaseAnonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkbHJmbGtqemxxYWd6Y3V5bHVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjA1NTM2NTEsImV4cCI6MTk3NjEyOTY1MX0.Bful4szvCrz7grRryeHDjjnzu6rx96lR1Dud2jp71vY"
     }
   },
   "react-native-google-mobile-ads": {

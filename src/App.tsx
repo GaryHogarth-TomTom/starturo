@@ -2,10 +2,12 @@ import React from 'react';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createClient } from '@supabase/supabase-js';
+import Constants from 'expo-constants';
 import { StatusBar } from 'expo-status-bar';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import 'react-native-gesture-handler';
+import OneSignal from 'react-native-onesignal';
 import { Provider as ReduxProvider } from 'react-redux';
 import { Provider as AuthClientProvider } from 'react-supabase';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -16,10 +18,11 @@ import { store, persistor } from '#app/core/store';
 
 import { RootView } from './RootView';
 
-const supabaseUrl = 'https://vdlrflkjzlqagzcuyluq.supabase.co';
+OneSignal.setAppId(Constants?.manifest?.extra?.oneSignalAppId);
+
+const supabaseUrl = Constants?.manifest?.extra?.supabaseUrl;
 // const supabaseKey = process.env.SUPABASE_KEY;
-const supabaseAnonKey =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkbHJmbGtqemxxYWd6Y3V5bHVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjA1NTM2NTEsImV4cCI6MTk3NjEyOTY1MX0.Bful4szvCrz7grRryeHDjjnzu6rx96lR1Dud2jp71vY';
+const supabaseAnonKey = Constants?.manifest?.extra?.supabaseAnonKey;
 
 export default function App() {
   i18n
