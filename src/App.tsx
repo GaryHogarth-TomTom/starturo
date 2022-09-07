@@ -20,13 +20,15 @@ import { RootView } from './RootView';
 
 OneSignal.setAppId(Constants?.manifest?.extra?.oneSignalAppId);
 
-const supabaseUrl = Constants?.manifest?.extra?.supabaseUrl;
+const supabaseUrl = 'https://vdlrflkjzlqagzcuyluq.supabase.co';
 // const supabaseKey = process.env.SUPABASE_KEY;
-const supabaseAnonKey = Constants?.manifest?.extra?.supabaseAnonKey;
+const supabaseAnonKey =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkbHJmbGtqemxxYWd6Y3V5bHVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjA1NTM2NTEsImV4cCI6MTk3NjEyOTY1MX0.Bful4szvCrz7grRryeHDjjnzu6rx96lR1Dud2jp71vY';
 
 export default function App() {
   i18n
     .use(initReactI18next) // passes i18n down to react-i18next
+    //@ts-ignore
     .init(i18nConfig);
   const authClient = createClient(supabaseUrl, supabaseAnonKey, {
     localStorage: AsyncStorage as any,

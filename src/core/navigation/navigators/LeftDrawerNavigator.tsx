@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Ionicons } from '@expo/vector-icons';
 import {
   createDrawerNavigator,
   DrawerContentComponentProps,
@@ -70,18 +69,15 @@ export const LeftDrawerNavigator = () => {
         component={AccountNavigator}
         options={{
           title: user ? t('screens.profile') : t('screens.signin'),
-          drawerIcon: props => (
-            <Icon as={Ionicons} name="person-outline" {...props} />
-          ),
+          drawerItemStyle: { height: 0, overflow: 'hidden' },
+          drawerIcon: props => <Icon name="profile" {...props} />,
         }}
       />
       <Drawer.Screen
         name="Preferences"
         options={{
           title: t('screens.preferences'),
-          drawerIcon: props => (
-            <Icon as={Ionicons} name="settings-outline" {...props} />
-          ),
+          drawerIcon: props => <Icon name="preferences" {...props} />,
         }}
         component={PreferencesScreen}
       />

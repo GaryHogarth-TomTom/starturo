@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Entypo, Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { IIconProps, Icon as NBIcon } from 'native-base';
 
 const ICONS = {
@@ -10,20 +10,31 @@ const ICONS = {
   },
   product: {
     as: Ionicons,
-    name: 'home-outline',
+    name: 'basket-outline',
+  },
+  profile: {
+    as: Ionicons,
+    name: 'person-outline',
   },
   preferences: {
     as: Ionicons,
-    name: 'home-outline',
+    name: 'settings-outline',
+  },
+  bookmarks: {
+    as: Ionicons,
+    name: 'bookmarks-outline',
   },
 };
 
-type Props = IIconProps;
+type IconProps = IIconProps & {
+  name: 'home' | 'product' | 'profile' | 'preferences' | 'bookmarks';
+};
 
-export const Icon = ({ name, ...rest }: IIconProps) => {
+export const Icon = ({ name, ...rest }: IconProps) => {
   if (!name) {
     return null;
   } else {
-    return <NBIcon {...rest} {...ICONS.home} />;
+    const icon = ICONS[name] ?? ICONS.home;
+    return <NBIcon {...rest} {...ICONS[name]} />;
   }
 };

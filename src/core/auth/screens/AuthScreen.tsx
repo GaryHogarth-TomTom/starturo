@@ -2,23 +2,11 @@ import React, { useState } from 'react';
 
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import {
-  HStack,
-  VStack,
-  Text,
-  Checkbox,
-  Button,
-  Pressable,
-  Center,
-  useToast,
-} from 'native-base';
+import { HStack, VStack, Text, Checkbox, Button, useToast } from 'native-base';
 import { useTranslation } from 'react-i18next';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useSignIn, useSignOut, useSignUp } from 'react-supabase';
 
-import { DividerWithText } from '#app/components/divider/DividerWithText';
-import { IconFacebook } from '#app/components/icon/IconFacebook';
-import { IconGoogle } from '#app/components/icon/IconGoogle';
 import { PasswordTextInput } from '#app/components/input/PasswordTextInput';
 import { TextInput } from '#app/components/input/TextInput';
 import { Link } from '#app/components/links/Link';
@@ -136,13 +124,7 @@ export const AuthScreen = ({ navigation, action = 'signin' }: Props) => {
               value="demo"
               accessibilityLabel="Remember me"
             >
-              <Text
-                fontWeight="normal"
-                _light={{ color: 'coolGray.800' }}
-                _dark={{ color: 'coolGray.400' }}
-              >
-                Remember me and keep me logged in
-              </Text>
+              <Text>Remember me and keep me logged in</Text>
             </Checkbox>
           )}
           {action === 'signin' && (
@@ -165,18 +147,6 @@ export const AuthScreen = ({ navigation, action = 'signin' }: Props) => {
               </Button>
             </>
           )}
-          {/* Closing Link Tag */}
-          <DividerWithText text="or" />
-          <Center>
-            <HStack space="4">
-              <Pressable>
-                <IconFacebook />
-              </Pressable>
-              <Pressable>
-                <IconGoogle />
-              </Pressable>
-            </HStack>
-          </Center>
         </VStack>
         <HStack
           mb="4"

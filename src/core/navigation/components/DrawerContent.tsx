@@ -25,10 +25,12 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
       style={drawerContentStyle}
     >
       <VStack space="4" my="1" mx="1">
-        <DrawerItem
-          label={user ? user?.email : 'Sign In'}
-          onPress={() => navigation.navigate('SignIn')}
-        />
+        {user && (
+          <DrawerItem
+            label={user?.email}
+            onPress={() => navigation.navigate('SignIn')}
+          />
+        )}
         <DrawerItemList {...props} />
       </VStack>
       <AdBanner />

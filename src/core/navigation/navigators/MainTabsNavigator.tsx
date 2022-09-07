@@ -2,10 +2,10 @@ import React from 'react';
 
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Icon } from 'native-base';
 import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { Icon } from '#app/components/icon/Icon';
 import { BookmarksScreen } from '#app/screens/BookmarksScreen';
 import { HomeScreen } from '#app/screens/HomeScreen';
 import ProductScreen from '#app/screens/nativebase-starter/ProductScreen';
@@ -47,9 +47,7 @@ export const MainTabsNavigator = () => {
         name="Home"
         options={{
           title: t('screens.home'),
-          tabBarIcon: props => (
-            <Icon as={Ionicons} name="home-outline" size={5} />
-          ),
+          tabBarIcon: props => <Icon size={6} name="home" />,
         }}
         component={HomeScreen}
       />
@@ -58,18 +56,14 @@ export const MainTabsNavigator = () => {
         component={ProductScreen}
         options={{
           title: t('screens.shop'),
-          tabBarIcon: props => (
-            <Icon as={Ionicons} name="basket-outline" size={5} />
-          ),
+          tabBarIcon: props => <Icon size={6} name="product" />,
         }}
       />
       <BottomTabs.Screen
         name="Bookmarks"
         options={{
           title: t('screens.bookmarks'),
-          tabBarIcon: props => (
-            <Icon as={Ionicons} name="bookmarks-outline" size={5} />
-          ),
+          tabBarIcon: props => <Icon size={6} name="bookmarks" />,
         }}
         component={BookmarksScreen}
       />
