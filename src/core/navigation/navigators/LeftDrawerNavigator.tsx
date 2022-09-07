@@ -40,12 +40,7 @@ export const LeftDrawerNavigator = () => {
     base: 'front',
     lg: 'permanent',
   });
-  const drawerStyle = useBreakpointValue({
-    base: undefined,
-    lg: {
-      width: 200,
-    },
-  });
+  const drawerStyle = { width: 320 };
 
   return (
     <Drawer.Navigator

@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { Entypo } from '@expo/vector-icons';
 import { DrawerContentScrollView } from '@react-navigation/drawer';
 import { DrawerContentComponentProps } from '@react-navigation/drawer/lib/typescript/src/types';
-import { Icon, VStack } from 'native-base';
+import { VStack } from 'native-base';
 
+import { AdBanner } from '#app/components/ads/AdBanner';
 import { useAuth } from '#app/core/auth/hooks/useAuth';
 
 import { DrawerItem } from './DrawerItem';
@@ -31,6 +31,7 @@ export const DrawerContent = (props: DrawerContentComponentProps) => {
         />
         <DrawerItemList {...props} />
       </VStack>
+      <AdBanner />
     </DrawerContentScrollView>
   );
 };

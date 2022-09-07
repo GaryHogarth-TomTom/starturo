@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { AntDesign, EvilIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import {
   Box,
@@ -10,25 +11,16 @@ import {
   StatusBar,
   Avatar,
   Image,
-  Input,
   useColorMode,
   ScrollView,
   Pressable,
   Center,
   Divider,
   Button,
-  IconButton,
   Stack,
   Link,
   Hidden,
-  Menu,
 } from 'native-base';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import Entypo from 'react-native-vector-icons/Entypo';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import Feather from 'react-native-vector-icons/Feather';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const categories = [
   {

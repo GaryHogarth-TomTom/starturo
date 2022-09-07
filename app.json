@@ -16,7 +16,8 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.starturo.base"
     },
     "android": {
       "adaptiveIcon": {
@@ -32,5 +33,10 @@
         }
       }
     }
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-4549295186372981~8029291695",
+    "ios_app_id": "ca-app-pub-4549295186372981~5211556660",
+    "user_tracking_usage_description": "This identifier shall be used to ship customized advertisements to you."
   }
 }

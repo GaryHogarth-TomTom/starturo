@@ -16,7 +16,6 @@ import { useTranslation } from 'react-i18next';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useSignIn, useSignOut, useSignUp } from 'react-supabase';
 
-// import { Button } from '#app/components/buttons/Button';
 import { DividerWithText } from '#app/components/divider/DividerWithText';
 import { IconFacebook } from '#app/components/icon/IconFacebook';
 import { IconGoogle } from '#app/components/icon/IconGoogle';
@@ -27,8 +26,12 @@ import { LinkSmall } from '#app/components/links/LinkSmall';
 import { NavigatorParams } from '#app/core/navigation';
 
 type Props = {
-  navigation: StackNavigationProp<NavigatorParams, 'SignIn'>;
-  route: RouteProp<NavigatorParams, 'SignIn'>;
+  navigation:
+    | StackNavigationProp<NavigatorParams, 'SignIn'>
+    | StackNavigationProp<NavigatorParams, 'SignUp'>;
+  route:
+    | RouteProp<NavigatorParams, 'SignIn'>
+    | RouteProp<NavigatorParams, 'SignUp'>;
   action: 'signin' | 'signup';
 };
 
@@ -75,7 +78,7 @@ export const AuthScreen = ({ navigation, action = 'signin' }: Props) => {
         });
       }
     } else {
-      const { user, error } = signUp({
+      const { user, error } = await signUp({
         email: email,
         password: password,
       });
