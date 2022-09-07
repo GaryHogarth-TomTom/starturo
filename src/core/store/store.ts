@@ -12,6 +12,9 @@ import {
   REGISTER,
 } from 'redux-persist';
 
+import userReducer, {
+  initialState as userInitialState,
+} from '#app/core/auth/store/userSlice';
 import i18nReducer, {
   initialState as i18nInitialState,
 } from '#app/core/i18n/store/i18nSlice';
@@ -26,12 +29,14 @@ export const RootReducer = {
   theme: themeReducer,
   i18n: i18nReducer,
   navigation: navigationReducer,
+  user: userReducer,
 };
 
 export const initialState = {
   theme: themeInitialState,
   i18n: i18nInitialState,
   navigation: navigationInitialState,
+  user: userInitialState,
 };
 
 const rootReducer = combineReducers(RootReducer);
@@ -40,7 +45,7 @@ const persistConfig = {
   key: 'starturo',
   version: 1,
   storage: AsyncStorage,
-  whitelist: ['theme', 'i18n'],
+  whitelist: ['theme', 'i18n', 'user'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

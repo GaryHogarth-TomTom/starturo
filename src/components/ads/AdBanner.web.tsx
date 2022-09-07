@@ -1,4 +1,7 @@
 import { Center } from 'native-base';
+import { useSelector } from 'react-redux';
+
+import { getShowAds } from '#app/core/auth/store/userSlice';
 
 type Banner = {
   src: string;
@@ -28,7 +31,8 @@ const getRandomBanner = (): Banner => {
 };
 
 export const AdBanner = () => {
-  return (
+  const showAds = useSelector(getShowAds);
+  return showAds ? (
     <Center>
       <iframe
         {...getRandomBanner()}
@@ -37,5 +41,5 @@ export const AdBanner = () => {
         sandbox="allow-scripts allow-same-origin allow-popups allow-top-navigation-by-user-activation"
       />
     </Center>
-  );
+  ) : null;
 };
