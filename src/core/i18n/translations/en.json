@@ -47,5 +47,13 @@
     "signIn": {
       "buttonLabel": "Sign In"
     }
+  },
+  "bookmarks": {
+    "nuud": {
+      "description": "Stop using deodorant, start using nuud: the natural anti-odorant. Effective for 3-7 days. No dodgy chemical ingredients, no aluminium, no parabens - 100% vegan & cruelty-free."
+    },
+    "rave": {
+      "description": "The best coffee there is, fresh and delivered to your door"
+    }
   }
 }

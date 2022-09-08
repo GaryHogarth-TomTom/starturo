@@ -6,6 +6,15 @@ module.exports = {
     'react/style-prop-object': 0,
     'react/require-default-props': 0,
     'import/extensions': 0,
+    'react/react-in-jsx-scope': 'off',
+    'no-unused-vars': [
+      'warn', // or "error"
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
     quotes: [2, 'single', 'avoid-escape'],
   },
   globals: {

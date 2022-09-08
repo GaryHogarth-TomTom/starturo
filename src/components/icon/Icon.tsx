@@ -33,8 +33,8 @@ type IconProps = IIconProps & {
 export const Icon = ({ name, ...rest }: IconProps) => {
   if (!name) {
     return null;
-  } else {
-    const icon = ICONS[name] ?? ICONS.home;
-    return <NBIcon {...rest} {...ICONS[name]} />;
   }
+
+  const icon = ICONS[name] ?? ICONS.home;
+  return <NBIcon {...rest} {...icon} />;
 };

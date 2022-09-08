@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { Feather, Entypo, Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import {
   DrawerActions,
   useNavigation,
@@ -28,7 +28,6 @@ import { useAuth } from '#app/core/auth/hooks/useAuth';
 export const AppBar = (_props: StackHeaderProps) => {
   const navigation: StackNavigationProp<any> = useNavigation();
   const { user } = useAuth();
-  const route = useRoute();
   const onPressMenuButton = useBreakpointValue({
     base: () => navigation.dispatch(DrawerActions.toggleDrawer()),
     lg: () => {},
@@ -97,7 +96,7 @@ export const AppBar = (_props: StackHeaderProps) => {
                       : undefined
                   }
                 >
-                  <Icon size="5" as={Ionicons} name={'person'} />
+                  <Icon size="5" as={Ionicons} name="person-outline" />
                 </Avatar>
               </Pressable>
               <Hidden from="lg">

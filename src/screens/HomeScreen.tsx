@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Center } from 'native-base';
 
@@ -9,6 +7,6 @@ type Props = {
   navigation: StackNavigationProp<NavigatorParams, 'Home'>;
 };
 
-export const HomeScreen = ({ navigation }: Props) => {
+export const HomeScreen = (_props: Props) => {
   return <Center flex={1}>Home</Center>;
 };
